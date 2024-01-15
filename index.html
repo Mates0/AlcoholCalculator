@@ -20,12 +20,12 @@
 <h1>test</h1>
 <form>
     <div class="form-group">
-        <label for="formGroupExampleInput">Váha</label>
-        <input type="number" class="form-control" id="formGroupExampleInput" placeholder="60">
+        <label for="weightForm">Váha</label>
+        <input type="number" class="form-control" id="weightForm" placeholder="60">
     </div>
     <div class="form-group">
-        <label for="exampleFormControlSelect1">Pohlaví</label>
-        <select class="form-control" id="exampleFormControlSelect1">
+        <label for="genderForm">Pohlaví</label>
+        <select class="form-control" id="genderForm">
             <option>Muž</option>
             <option>Žena</option>
         </select>
@@ -63,7 +63,7 @@
                             <input type="time" class="form-control" value=""/>
                         </div>
                         <div class="form-group">
-                            <label for="formGroupExampleInput">Objem (l)</label>
+                            <label for="formGroupExampleInput1">Objem (l)</label>
                             <input type="number" class="form-control" id="formGroupExampleInput1" placeholder="0,2">
                         </div>
                     </form>
@@ -78,14 +78,10 @@
 
     <h1>List přidaného alkoholu:</h1>
     <div id="added-alcohol-container">
-        <!--<ul class="list-group">
-            <li class="list-group-item">Cras justo odio
-                <button type="button" class="btn btn-danger">Vymazat</button>
-            </li>
-        </ul><-->
+
     </div>
-    <button type="button" class="btn btn-danger">Vymazat vše</button>
-    <button type="button" class="btn btn-success">Vypočítat</button>
+    <button type="button" class="btn btn-danger" id="deleteAlcohol">Vymazat vše</button>
+    <a href="graphPage.html"><button type="button" class="btn btn-success" id="calculate">Vypočítat</button></a>
 </form>
 <script src="index.js"></script>
 </body>

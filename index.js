@@ -56,35 +56,34 @@ let liquor = [
 ]
 
 let addedAlcohol = [
-    {
-        "name": "Finlandia",
-        "alcoholcontent": 42.2,
-        "consumptionTime": 2300,
-        "volume": 2.2
-    },
-    {
-        "name": "Captain Morgan",
-        "alcoholcontent": 42.2,
-        "consumptionTime": 2300,
-        "volume": 2.2
-    }
+
 ]
-document.getElementById("beer").addEventListener('click', function() {
+
+let test = {
+    "name": "Test",
+    "alcoholcontent": 42.2,
+    "consumptionTime": 2300,
+    "volume": 2.2
+
+}
+document.getElementById("beer").addEventListener('click', function () {
     displayBeer()
 });
-document.getElementById("wines").addEventListener('click', function() {
+document.getElementById("wines").addEventListener('click', function () {
     displayWine()
 });
-document.getElementById("liquor").addEventListener('click', function() {
+document.getElementById("liquor").addEventListener('click', function () {
     displayLiquor()
 });
-
-document.getElementById("addAlcoholToList").addEventListener("click", function () {
-    console.log("niingge")
-    displayAlcoholList()
+document.getElementById("deleteAlcohol").addEventListener("click", function () {
+    deleteAddedAlcohol()
 })
 
-function displayAlcoholList() {
+document.getElementById("addAlcoholToList").addEventListener("click", function () {
+    addToAlcoholList()
+})
+
+function addToAlcoholList() {
     let listContainer = document.getElementById('added-alcohol-container');
 
     let ulElement = document.createElement('ul');
@@ -107,7 +106,7 @@ function displayAlcoholList() {
         deleteButton.textContent = 'Vymazat';
 
         deleteButton.addEventListener('click', function () {
-            // Handle delete button click (you can remove the list item or perform other actions)
+
         });
 
         listItem.appendChild(deleteButton);
@@ -116,11 +115,9 @@ function displayAlcoholList() {
 }
 
 
-
 function displayBeer() {
     clearContainer();
     let alcoholContainer = document.getElementById('alcohol-container');
-
 
     for (let i = 0; i < beers.length; i++) {
         let cardDiv = document.createElement('div');
@@ -148,12 +145,16 @@ function displayBeer() {
         let addButton = document.createElement('button');
         addButton.type = 'button';
         addButton.classList.add('btn', 'btn-primary');
+        addButton.textContent = 'Přidat';
+        addButton.id = "addBtn";
         addButton.setAttribute('data-toggle', 'modal');
         addButton.setAttribute('data-target', '#exampleModal');
-        addButton.textContent = 'Přidat';
-        addButton.addEventListener('click', function() {
+        document.getElementById("addAlcoholToList").setAttribute("data-dismiss", "modal")
+        addButton.addEventListener('click', function () {
             let modalTitle = document.getElementById('exampleModalLabel');
             modalTitle.textContent = beers[i].name;
+            addedAlcohol.push(test)
+            console.log(addedAlcohol)
         });
 
         cardBodyDiv.appendChild(addButton);
@@ -193,9 +194,11 @@ function displayWine() {
         addButton.setAttribute('data-toggle', 'modal');
         addButton.setAttribute('data-target', '#exampleModal');
         addButton.textContent = 'Přidat';
-        addButton.addEventListener('click', function() {
+        document.getElementById("addAlcoholToList").setAttribute("data-dismiss", "modal")
+        addButton.addEventListener('click', function () {
             let modalTitle = document.getElementById('exampleModalLabel');
             modalTitle.textContent = wines[i].name;
+            addedAlcohol.push(test)
         });
         cardBodyDiv.appendChild(addButton);
     }
@@ -234,9 +237,11 @@ function displayLiquor() {
         addButton.setAttribute('data-toggle', 'modal');
         addButton.setAttribute('data-target', '#exampleModal');
         addButton.textContent = 'Přidat';
-        addButton.addEventListener('click', function() {
+        document.getElementById("addAlcoholToList").setAttribute("data-dismiss", "modal")
+        addButton.addEventListener('click', function () {
             let modalTitle = document.getElementById('exampleModalLabel');
             modalTitle.textContent = liquor[i].name;
+            addedAlcohol.push(test)
         });
         cardBodyDiv.appendChild(addButton);
     }
@@ -246,3 +251,13 @@ function clearContainer() {
     let alcoholContainer = document.getElementById('alcohol-container');
     alcoholContainer.innerHTML = '';
 }
+
+function deleteAddedAlcohol() {
+    let listContainer = document.getElementById('added-alcohol-container');
+    while (listContainer.firstChild) {
+        listContainer.removeChild(listContainer.firstChild);
+    }
+    addedAlcohol = []
+}
+
+console.log(addedAlcohol)
