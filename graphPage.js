@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let weight = localStorage.getItem('inputValue');
     let gender = localStorage.getItem("selectedGender")
+    let storedTime = localStorage.getItem('selectedTime');
+
+    console.log(storedTime)
 
     if (gender === "Muž") {
         genderValue = 0.7
@@ -30,19 +33,20 @@ document.addEventListener('DOMContentLoaded', function () {
     let timeNeeded = Math.ceil(weightOfAlcohol / weightOfBurnedAlcohol);
 
     function generateTimeArray(startingHour, timeNeeded) {
-        let startTime = new Date(`2024-01-22T${startingHour}:00:00`);
-        let timeArray = [];
+        const isFullFormat = startingHour.includes(":");
+        const startTime = new Date(`2024-01-22T${isFullFormat ? startingHour : startingHour + ":00"}:00`);
+        const timeArray = [];
 
         for (let i = 0; i < timeNeeded; i++) {
-            let nextTime = new Date(startTime.getTime() + i * 60 * 60 * 1000);
-            let formattedTime = nextTime.toLocaleTimeString('cs', { hour: 'numeric', minute: 'numeric' });
+            const nextTime = new Date(startTime.getTime() + i * 60 * 60 * 1000);
+            const formattedTime = nextTime.toLocaleTimeString('cs', { hour: 'numeric', minute: 'numeric' });
             timeArray.push(formattedTime);
         }
 
         return timeArray;
     }
 
-    const timeArray = generateTimeArray("13", timeNeeded);
+    const timeArray = generateTimeArray(storedTime, timeNeeded);
     console.log(timeArray);
 
     //Promile v časech array

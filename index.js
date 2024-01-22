@@ -56,9 +56,7 @@ window.onload = function () {
         },
     ]
 
-    let addedAlcohol = [
-
-    ]
+    let addedAlcohol = []
 
     let test = {
         "name": "Test",
@@ -266,6 +264,8 @@ window.onload = function () {
         localStorage.setItem('inputValue', weight);
         let gender = document.getElementById("genderForm").value
         localStorage.setItem("selectedGender", gender)
+        let timeInput = document.getElementById("timeForm").value;
+        localStorage.setItem('selectedTime', timeInput);
         window.location.href = 'graphPage.html';
     }
 
