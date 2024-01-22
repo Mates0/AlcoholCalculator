@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    let weightOfAlcohol = (500*5*0.8) / 100
+    let weightOfAlcohol = (500 * 5 * 0.8) / 100
     let genderValue;
     let genderValue2;
 
@@ -15,14 +15,74 @@ document.addEventListener('DOMContentLoaded', function () {
         genderValue2 = 0.085
     }
 
-    let promile = weightOfAlcohol / (weight * genderValue)
+    let maxPromile = weightOfAlcohol / (weight * genderValue)
     let weightOfBurnedAlcohol = weight * genderValue2
 
 
     document.getElementById("weightOfAlcohol").innerHTML = `Hmotnost alkoholu: ${weightOfAlcohol} [g]`;
 
-    document.getElementById("promile").innerHTML = `Promile: ${promile} [%.]`;
+    document.getElementById("promile").innerHTML = `Promile: ${maxPromile} [%.]`;
 
     document.getElementById("weightOfBurnedAlcohol").innerHTML = `Hmotnost (odbouraného alkoholu): ${weightOfBurnedAlcohol} [g/h]`
+
+
+    //Časová array
+    let timeNeeded = Math.ceil(weightOfAlcohol / weightOfBurnedAlcohol);
+
+    function generateTimeArray(startingHour, timeNeeded) {
+        let startTime = new Date(`2024-01-22T${startingHour}:00:00`);
+        let timeArray = [];
+
+        for (let i = 0; i < timeNeeded; i++) {
+            let nextTime = new Date(startTime.getTime() + i * 60 * 60 * 1000);
+            let formattedTime = nextTime.toLocaleTimeString('cs', { hour: 'numeric', minute: 'numeric' });
+            timeArray.push(formattedTime);
+        }
+
+        return timeArray;
+    }
+
+    const timeArray = generateTimeArray("13", timeNeeded);
+    console.log(timeArray);
+
+    //Promile v časech array
+    function createCalculatedArray(timeNeeded, weightOfBurnedAlcohol, weight, genderValue) {
+        let resultArray = [];
+
+        for (let i = 0; i < timeNeeded; i++) {
+            let originalNumber = i * weightOfBurnedAlcohol;
+            console.log(originalNumber)
+            let calculatedValue = originalNumber / (weight * genderValue);
+            resultArray.push(calculatedValue);
+        }
+
+        return resultArray.reverse();
+    }
+
+    const promileToTimeArray = createCalculatedArray(timeNeeded, weightOfBurnedAlcohol, weight, genderValue);
+    console.log(promileToTimeArray);
+
+
+    // Graf
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: timeArray,
+            datasets: [{
+                label: 'Hladina alkoholu',
+                data: promileToTimeArray,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 
 });
