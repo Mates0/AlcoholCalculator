@@ -73,7 +73,7 @@ window.onload = function () {
 
     document.getElementById("addAlcoholToList").addEventListener("click", function () {
         $('#exampleModal').modal('hide');
-        console.log(addedAlcohol);
+        addToAlcoholList();
     });
     document.getElementById("closeModal").addEventListener("click", function () {
         console.log(addedAlcohol)
@@ -112,25 +112,25 @@ window.onload = function () {
             addButton.addEventListener('click', function () {
                 let modalTitle = document.getElementById('exampleModalLabel');
                 modalTitle.textContent = alcohol.name;
-                addToAlcoholList(alcohol);
+                document.getElementById('time-form').value = '';
+                document.getElementById('volume-form').value = '';
             });
             cardBodyDiv.appendChild(addButton);
         });
     }
 
-    function addToAlcoholList(alcohol) {
+    function addToAlcoholList() {
         let timeOfConsumption = document.getElementById("time-form").value;
         let volume = document.getElementById("volume-form").value;
 
-        let newAlcohol = {
-            name: alcohol.name,
-            alcoholcontent: alcohol.alcoholcontent,
-            timeOfConsumption: timeOfConsumption,
-            volume: volume
-        };
-
-        addedAlcohol.push(newAlcohol);
-        renderAddedAlcohol();
+        if (timeOfConsumption && volume) {
+            let selectedAlcohol = document.getElementById('exampleModalLabel').textContent;
+            let alcohol = { name: selectedAlcohol, timeOfConsumption: timeOfConsumption, volume: volume };
+            addedAlcohol.push(alcohol);
+            renderAddedAlcohol();
+        } else {
+            alert("Please fill out both time and volume fields.");
+        }
     }
 
 
