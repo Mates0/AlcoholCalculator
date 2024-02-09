@@ -123,14 +123,28 @@ window.onload = function () {
         let timeOfConsumption = document.getElementById("time-form").value;
         let volume = document.getElementById("volume-form").value;
 
+
         if (timeOfConsumption && volume) {
-            let selectedAlcohol = document.getElementById('exampleModalLabel').textContent;
-            let alcohol = { name: selectedAlcohol, timeOfConsumption: timeOfConsumption, volume: volume };
+            let selectedAlcoholName = document.getElementById('exampleModalLabel').textContent;
+            let selectedAlcohol = findAlcoholByName(selectedAlcoholName);
+
+            let alcohol = {
+                name: selectedAlcoholName,
+                alcoholContent: selectedAlcohol.alcoholcontent,
+                timeOfConsumption: timeOfConsumption,
+                volume: volume
+            };
             addedAlcohol.push(alcohol);
             renderAddedAlcohol();
+            console.log(addedAlcohol)
         } else {
-            alert("Please fill out both time and volume fields.");
+            alert("Prosím vyplňte všechny údaje.")
         }
+    }
+
+    function findAlcoholByName(name) {
+        let allAlcohols = [...beers, ...wines, ...liquor];
+        return allAlcohols.find(alcohol => alcohol.name === name);
     }
 
 
