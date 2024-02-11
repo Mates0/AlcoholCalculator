@@ -2,7 +2,7 @@ window.onload = function () {
     let beers = [
         {
             "name": "Plzeň",
-            "alcoholcontent": 4.2,
+            "alcoholcontent": 5.0,
         },
         {
             "name": "Krušovice",

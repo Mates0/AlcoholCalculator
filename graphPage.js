@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    let weightOfAlcohol = (500 * 5 * 0.8) / 100
     let genderValue;
     let genderValue2;
 
@@ -8,6 +7,22 @@ document.addEventListener('DOMContentLoaded', function () {
     let storedTime = localStorage.getItem('selectedTime');
     let addedAlcoholObject = localStorage.getItem("timeAndVolume")
     let addedAlcohol = JSON.parse(addedAlcoholObject);
+    console.log(addedAlcohol.length)
+    function calculateWeightOfAlcoholFromArray() {
+        let alcoholContent = 0
+        let volume = 0
+
+        for (let i = 0; i < addedAlcohol.length; i++) {
+            alcoholContent += addedAlcohol[i].alcoholContent * 10
+            volume += addedAlcohol[i].volume * 100
+            console.log(alcoholContent)
+            console.log(volume)
+        }
+
+        return ((alcoholContent * volume * 0.8) / 100) / addedAlcohol.length
+    }
+
+    let weightOfAlcohol = calculateWeightOfAlcoholFromArray()
 
     console.log(addedAlcohol)
 
