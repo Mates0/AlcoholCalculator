@@ -189,6 +189,7 @@ window.onload = function () {
         localStorage.setItem("selectedGender", gender)
         let timeInput = document.getElementById("timeForm").value;
         localStorage.setItem('selectedTime', timeInput);
+        localStorage.setItem('timeAndVolume', JSON.stringify(addedAlcohol));
         window.location.href = 'graphPage.html';
     }
 
