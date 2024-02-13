@@ -39,9 +39,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let weightOfBurnedAlcohol = weight * genderValue2
 
 
-    document.getElementById("weightOfAlcohol").innerHTML = `Hmotnost alkoholu: ${weightOfAlcohol} [g]`;
+    //document.getElementById("weightOfAlcohol").innerHTML = `Hmotnost alkoholu: ${weightOfAlcohol} [g]`;
 
-    document.getElementById("weightOfBurnedAlcohol").innerHTML = `Hmotnost (odbouraného alkoholu): ${weightOfBurnedAlcohol} [g/h]`
+    //document.getElementById("weightOfBurnedAlcohol").innerHTML = `Hmotnost (odbouraného alkoholu): ${weightOfBurnedAlcohol} [g/h]`
 
     document.getElementById("promile").innerHTML = `Promile: ${maxPromile} [%.]`;
 
@@ -49,13 +49,13 @@ document.addEventListener('DOMContentLoaded', function () {
     let timeNeeded = Math.ceil(weightOfAlcohol / weightOfBurnedAlcohol) + 2;
 
     function generateTimeArray(startingHour, timeNeeded) {
-        const isFullFormat = startingHour.includes(":");
-        const startTime = new Date(`2024-01-22T${isFullFormat ? startingHour : startingHour + ":00"}:00`);
-        const timeArray = [];
+        let isFullFormat = startingHour.includes(":");
+        let startTime = new Date(`2024-01-22T${isFullFormat ? startingHour : startingHour + ":00"}:00`);
+        let timeArray = [];
 
         for (let i = 0; i < timeNeeded; i++) {
-            const nextTime = new Date(startTime.getTime() + i * 60 * 60 * 1000);
-            const formattedTime = nextTime.toLocaleTimeString('cs', { hour: 'numeric', minute: 'numeric' });
+            let nextTime = new Date(startTime.getTime() + i * 60 * 60 * 1000);
+            let formattedTime = nextTime.toLocaleTimeString('cs', { hour: 'numeric', minute: 'numeric' });
             timeArray.push(formattedTime);
         }
 
@@ -93,7 +93,12 @@ document.addEventListener('DOMContentLoaded', function () {
             datasets: [{
                 label: 'Hladina alkoholu',
                 data: promileToTimeArray,
-                borderWidth: 1
+                borderWidth: 3,
+                fill: false,
+                borderColor: 'rgba(255, 0, 0)',
+                tension: 0.1,
+                backgroundColor: 'rgba(255, 0, 0, 0.5)',
+                hoverBorderWidth: 10
             }]
         },
         options: {
