@@ -79,6 +79,14 @@ window.onload = function () {
         console.log(addedAlcohol)
     });
 
+    document.getElementById("login-btn").addEventListener("click", function () {
+        login()
+    });
+
+    document.getElementById("register-btn").addEventListener("click", function () {
+        register()
+    });
+
     function displayAlcohol(alcoholType) {
         clearContainer();
         let alcoholContainer = document.getElementById('alcohol-container');
@@ -191,6 +199,14 @@ window.onload = function () {
         localStorage.setItem('selectedTime', timeInput);
         localStorage.setItem('timeAndVolume', JSON.stringify(addedAlcohol));
         window.location.href = 'graphPage.html';
+    }
+
+    function login() {
+        window.location.href = 'login.html';
+    }
+
+    function register() {
+        window.location.href = 'register.html';
     }
 
     document.getElementById("calculate").addEventListener("click", function () {
