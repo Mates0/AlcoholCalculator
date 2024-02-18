@@ -65,6 +65,9 @@
     <div id="alcohol-container" class="d-flex">
     </div>
 
+    <button type="button" class="btn btn-success">Přidat Alkohol</button>
+
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -102,21 +105,14 @@
     </div>
     <button type="button" class="btn btn-danger" id="deleteAlcohol">Vymazat vše</button>
     <button type="button" class="btn btn-success" id="calculate">Vypočítat</button>
-
-    <!--<h1 id="test2">TEST: </h1><-->
 </form>
 <script>
     let userCreds = JSON.parse(sessionStorage.getItem('user-creds'));
-    let userInfo = JSON.parse(sessionStorage.getItem('user-info'));
-
-    console.log(userCreds)
-    console.log(userInfo)
 
     let loggedIn = document.getElementById("logged-in-status")
-    let loggedIn2 = document.getElementById("test2")
+    let accountDetails = document.getElementById("profile-btn");
 
     loggedIn.innerHTML = "Jseš přihlášen jako: " + userCreds.email;
-    //loggedIn2.innerHTML = "TEST: " + " " + userInfo.test;
 
     let checkIfSigned = () => {
         if (sessionStorage.getItem("user-creds")) {
@@ -141,6 +137,9 @@
 
     window.addEventListener('load', checkIfSigned)
     logOutBtn.addEventListener('click', signOut);
+    accountDetails.addEventListener('click', () => {
+        window.location.href = 'profileDetail.html';
+    })
 
 </script>
 </body>

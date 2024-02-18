@@ -190,7 +190,7 @@ window.onload = function () {
         renderAddedAlcohol();
     }
 
-    function calc() {
+    function calculateAlcohol() {
         let weight = document.getElementById("weightForm").value
         localStorage.setItem('inputValue', weight);
         let gender = document.getElementById("genderForm").value
@@ -210,7 +210,7 @@ window.onload = function () {
     }
 
     document.getElementById("calculate").addEventListener("click", function () {
-        calc()
+        calculateAlcohol()
     })
 
 };
