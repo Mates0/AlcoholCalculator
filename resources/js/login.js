@@ -29,12 +29,16 @@ let loginBtn = document.getElementById("login-btn")
 let signInUser = evt => {
     evt.preventDefault()
     signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            console.log(user)
-            // ...
-            window.location.href = "index.html"
+        .then((userCredentials) => {
+            get(child(dbRef, "users/" + userCredentials.user.uid)).then((snapshot) => {
+                if (snapshot.exists()) {
+                    sessionStorage.setItem("user-info", JSON.stringify({email: snapshot.val().email, uid: userCredentials.user.uid, test: snapshot.val().test}));
+                }
+                sessionStorage.setItem("user-creds", JSON.stringify(userCredentials.user));
+                window.location.href = 'index.html';
+            }).catch((error) => {
+                console.error(error);
+            });
         })
         .catch((error) => {
             const errorCode = error.code;

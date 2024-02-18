@@ -27,11 +27,13 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">You are not logged in</a>
+                    <a class="nav-link active" aria-current="page" href="#" id="logged-in-status">Nejsi přihlášen</a>
                 </li>
             </ul>
-            <button type="button" class="btn btn-primary" id="login-btn">Log In</button>
-            <button type="button" class="btn btn-primary" id="register-btn">Register</button>
+            <button type="button" class="btn btn-primary" id="login-btn">Přihlásit se</button>
+            <button type="button" class="btn btn-primary" id="register-btn">Registrovat se</button>
+            <button type="button" class="btn btn-primary d-none" id="profile-btn">Detail Profilu</button>
+            <button type="button" class="btn btn-danger d-none" id="logout-btn">Odhlásit se</button>
 
         </div>
     </div>
@@ -100,6 +102,46 @@
     </div>
     <button type="button" class="btn btn-danger" id="deleteAlcohol">Vymazat vše</button>
     <button type="button" class="btn btn-success" id="calculate">Vypočítat</button>
+
+    <!--<h1 id="test2">TEST: </h1><-->
 </form>
+<script>
+    let userCreds = JSON.parse(sessionStorage.getItem('user-creds'));
+    let userInfo = JSON.parse(sessionStorage.getItem('user-info'));
+
+    console.log(userCreds)
+    console.log(userInfo)
+
+    let loggedIn = document.getElementById("logged-in-status")
+    let loggedIn2 = document.getElementById("test2")
+
+    loggedIn.innerHTML = "Jseš přihlášen jako: " + userCreds.email;
+    //loggedIn2.innerHTML = "TEST: " + " " + userInfo.test;
+
+    let checkIfSigned = () => {
+        if (sessionStorage.getItem("user-creds")) {
+            document.getElementById('login-btn').classList.add('d-none');
+            document.getElementById('register-btn').classList.add('d-none');
+            document.getElementById('profile-btn').classList.remove('d-none');
+            document.getElementById('logout-btn').classList.remove('d-none');
+        }
+    }
+
+    let signOut = () => {
+        sessionStorage.removeItem('user-creds');
+        sessionStorage.removeItem('user-info');
+        document.getElementById('login-btn').classList.remove('d-none');
+        document.getElementById('register-btn').classList.remove('d-none');
+        document.getElementById('profile-btn').classList.add('d-none');
+        document.getElementById('logout-btn').classList.add('d-none');
+        window.location.href = 'index.html';
+    }
+
+    let logOutBtn = document.getElementById('logout-btn');
+
+    window.addEventListener('load', checkIfSigned)
+    logOutBtn.addEventListener('click', signOut);
+
+</script>
 </body>
 </html>

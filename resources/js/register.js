@@ -28,12 +28,11 @@ let registerBtn = document.getElementById("register-btn")
 let registerUser = evt => {
     evt.preventDefault()
     createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            console.log(user)
-            window.location.href = "index.html"
-            // ...
+        .then((userCredentials) => {
+            set(ref(db, 'users/' + userCredentials.user.uid), {
+                email: emailInput.value,
+                test: "test"
+            });
         })
         .catch((error) => {
             const errorCode = error.code;
