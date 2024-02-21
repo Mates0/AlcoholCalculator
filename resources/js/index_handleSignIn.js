@@ -2,6 +2,7 @@ let userCreds = JSON.parse(sessionStorage.getItem('user-creds'));
 
 let loggedIn = document.getElementById("logged-in-status")
 let accountDetails = document.getElementById("profile-btn");
+let logOutBtn = document.getElementById('logout-btn');
 
 loggedIn.innerHTML = "Jseš přihlášen jako: " + userCreds.email;
 
@@ -23,8 +24,6 @@ let signOut = () => {
     document.getElementById('logout-btn').classList.add('d-none');
     window.location.href = 'index.html';
 }
-
-let logOutBtn = document.getElementById('logout-btn');
 
 window.addEventListener('load', checkIfSigned)
 logOutBtn.addEventListener('click', signOut);

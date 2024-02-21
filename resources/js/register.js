@@ -32,7 +32,9 @@ let registerUser = evt => {
             set(ref(db, 'users/' + userCredentials.user.uid), {
                 email: emailInput.value,
                 test: "test"
-            });
+            }).then(() => {
+                window.location.href = 'index.html';
+            })
         })
         .catch((error) => {
             const errorCode = error.code;
