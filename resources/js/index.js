@@ -1,60 +1,9 @@
+import { beers } from './alcoholLists/beers.js';
+import { wines } from './alcoholLists/wines.js';
+import { liquor } from './alcoholLists/liquor.js';
+import { addNewAlcoholToLists } from './index_addNewAlcohol.js';
+
 window.onload = function () {
-    let beers = [
-        {
-            "name": "Plzeň",
-            "alcoholcontent": 5.0,
-        },
-        {
-            "name": "Krušovice",
-            "alcoholcontent": 3.2,
-        },
-        {
-            "name": "Kozel 10",
-            "alcoholcontent": 3.5,
-        },
-        {
-            "name": "Braník",
-            "alcoholcontent": 2.0,
-        },
-    ];
-
-    let wines = [
-        {
-            "name": "Malbec",
-            "alcoholcontent": 14.2,
-        },
-        {
-            "name": "Tannat",
-            "alcoholcontent": 13.2,
-        },
-        {
-            "name": "Grenache",
-            "alcoholcontent": 13.5,
-        },
-        {
-            "name": "Sauvignon",
-            "alcoholcontent": 12.0,
-        },
-    ];
-
-    let liquor = [
-        {
-            "name": "Finlandia",
-            "alcoholcontent": 42.2,
-        },
-        {
-            "name": "Captain Morgan",
-            "alcoholcontent": 40.2,
-        },
-        {
-            "name": "Bacardi",
-            "alcoholcontent": 38.5,
-        },
-        {
-            "name": "Zelená",
-            "alcoholcontent": 19.0,
-        },
-    ];
 
     let addedAlcohol = [];
 
@@ -220,32 +169,7 @@ window.onload = function () {
     });
 
     document.getElementById("add-To-List").addEventListener("click", function(event) {
-        addNewAlcoholToLists();
+        addNewAlcoholToLists(beers, wines, liquor);
     });
 
-    function addNewAlcoholToLists() {
-        let name = document.getElementById("alcohol-name").value;
-        let alcoholContent = parseFloat(document.getElementById("percentage-of-alcohol").value);
-        let type = document.getElementById("inputState").value;
-
-        let alcohol = {
-            name: name,
-            alcoholcontent: alcoholContent
-        };
-
-        if (type === "Piva") {
-            beers.push(alcohol);
-        } else if (type === "Vína") {
-            wines.push(alcohol);
-        } else if (type === "Tvrdý alkohol") {
-            liquor.push(alcohol);
-        }
-
-        console.log(beers, wines, liquor)
-
-        document.getElementById("alcohol-name").value = "";
-        document.getElementById("percentage-of-alcohol").value = "";
-        document.getElementById("inputState").selectedIndex = 0;
-
-    }
 };
