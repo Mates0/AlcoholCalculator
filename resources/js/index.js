@@ -2,6 +2,7 @@ import { beers } from './alcoholLists/beers.js';
 import { wines } from './alcoholLists/wines.js';
 import { liquor } from './alcoholLists/liquor.js';
 import { addNewAlcoholToLists } from './index_addNewAlcohol.js';
+import { calculateAlcohol } from './index_calculateAlcohol.js';
 
 window.onload = function () {
 
@@ -21,12 +22,38 @@ window.onload = function () {
     });
 
     document.getElementById("addAlcoholToList").addEventListener("click", function () {
-        $('#exampleModal').modal('hide');
         addToAlcoholList();
     });
     document.getElementById("closeModal").addEventListener("click", function () {
         console.log(addedAlcohol)
     });
+    document.getElementById("add-more-alcohol").addEventListener("click", function() {
+        var modal = new bootstrap.Modal(document.getElementById('add-more-alcohol-modal'));
+
+        modal.show();
+    });
+
+    document.getElementById("add-To-List").addEventListener("click", function(event) {
+        addNewAlcoholToLists(beers, wines, liquor);
+    });
+    document.getElementById("calculate").addEventListener("click", function () {
+        calculateAlcohol(addedAlcohol)
+    })
+    document.getElementById("login-btn").addEventListener("click", function () {
+        login()
+    });
+
+    document.getElementById("register-btn").addEventListener("click", function () {
+        register()
+    });
+
+    function login() {
+        window.location.href = 'login.html';
+    }
+
+    function register() {
+        window.location.href = 'register.html';
+    }
 
     function displayAlcohol(alcoholType) {
         clearContainer();
@@ -71,7 +98,6 @@ window.onload = function () {
     function addToAlcoholList() {
         let timeOfConsumption = document.getElementById("time-form").value;
         let volume = document.getElementById("volume-form").value;
-
 
         if (timeOfConsumption && volume) {
             let selectedAlcoholName = document.getElementById('exampleModalLabel').textContent;
@@ -130,46 +156,4 @@ window.onload = function () {
         addedAlcohol = [];
         renderAddedAlcohol();
     }
-
-    function calculateAlcohol() {
-        let weight = document.getElementById("weightForm").value
-        localStorage.setItem('inputValue', weight);
-        let gender = document.getElementById("genderForm").value
-        localStorage.setItem("selectedGender", gender)
-        let timeInput = document.getElementById("timeForm").value;
-        localStorage.setItem('selectedTime', timeInput);
-        localStorage.setItem('timeAndVolume', JSON.stringify(addedAlcohol));
-        window.location.href = 'graphPage.html';
-    }
-
-    document.getElementById("calculate").addEventListener("click", function () {
-        calculateAlcohol()
-    })
-
-    document.getElementById("login-btn").addEventListener("click", function () {
-        login()
-    });
-
-    document.getElementById("register-btn").addEventListener("click", function () {
-        register()
-    });
-
-    function login() {
-        window.location.href = 'login.html';
-    }
-
-    function register() {
-        window.location.href = 'register.html';
-    }
-
-    document.getElementById("add-more-alcohol").addEventListener("click", function() {
-        var modal = new bootstrap.Modal(document.getElementById('add-more-alcohol-modal'));
-
-        modal.show();
-    });
-
-    document.getElementById("add-To-List").addEventListener("click", function(event) {
-        addNewAlcoholToLists(beers, wines, liquor);
-    });
-
 };
