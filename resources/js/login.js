@@ -32,7 +32,7 @@ let signInUser = evt => {
         .then((userCredentials) => {
             get(child(dbRef, "users/" + userCredentials.user.uid)).then((snapshot) => {
                 if (snapshot.exists()) {
-                    sessionStorage.setItem("user-info", JSON.stringify({email: snapshot.val().email, uid: userCredentials.user.uid, test: snapshot.val().test}));
+                    sessionStorage.setItem("user-info", JSON.stringify({email: snapshot.val().email, uid: userCredentials.user.uid}));
                 }
                 sessionStorage.setItem("user-creds", JSON.stringify(userCredentials.user));
                 window.location.href = 'index.html';

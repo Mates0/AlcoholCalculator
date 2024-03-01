@@ -30,8 +30,7 @@ let registerUser = evt => {
     createUserWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
         .then((userCredentials) => {
             set(ref(db, 'users/' + userCredentials.user.uid), {
-                email: emailInput.value,
-                test: "test"
+                email: emailInput.value
             }).then(() => {
                 window.location.href = 'index.html';
             })
