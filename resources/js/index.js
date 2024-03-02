@@ -25,6 +25,9 @@ const alcoholData = {
     wines: [],
     liquor: []
 };
+
+let noAlcoholInDB = false
+
 const app = initializeApp(firebaseConfig);
 
 window.onload = function () {
@@ -65,9 +68,6 @@ window.onload = function () {
 
     document.getElementById("addAlcoholToList").addEventListener("click", function () {
         addToAlcoholList();
-    });
-    document.getElementById("closeModal").addEventListener("click", function () {
-        console.log(addedAlcohol)
     });
     document.getElementById("add-more-alcohol").addEventListener("click", function () {
         var modal = new bootstrap.Modal(document.getElementById('add-more-alcohol-modal'));
@@ -160,10 +160,16 @@ window.onload = function () {
     }
 
     function findAlcoholByName(name) {
+        if (noAlcoholInDB && userCreds) {
+            noAlcoholInDB = false
+            let allAlcohols = [...beers, ...wines, ...liquor];
+            return allAlcohols.find(alcohol => alcohol.name === name);
+        }
         if (userCreds) {
             let allAlcohols = [...alcoholData.beers, ...alcoholData.wines, ...alcoholData.liquor];
             return allAlcohols.find(alcohol => alcohol.name === name);
-        } else {
+        }
+        if (!userCreds) {
             let allAlcohols = [...beers, ...wines, ...liquor];
             return allAlcohols.find(alcohol => alcohol.name === name);
         }
@@ -221,6 +227,18 @@ window.onload = function () {
                     // Display the fetched alcohol lists
                     displayAlcohol(alcoholType); // You can choose which list to display initially
                 } else {
+                    let alcType
+                    if (alcoholType === alcoholData.beers) {
+                        alcType = beers
+                    }
+                    if (alcoholType === alcoholData.wines) {
+                        alcType = wines
+                    }
+                    if (alcoholType === alcoholData.liquor) {
+                        alcType = liquor
+                    }
+                    noAlcoholInDB = true
+                    displayAlcohol(alcType);
                     console.log("No alcohol lists found in the database.");
                     // Display default alcohol lists (optional)
                     // displayAlcohol(beers); // Or display default arrays
