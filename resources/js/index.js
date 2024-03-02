@@ -1,22 +1,58 @@
-import { beers } from './alcoholLists/beers.js';
-import { wines } from './alcoholLists/wines.js';
-import { liquor } from './alcoholLists/liquor.js';
-import { addNewAlcoholToLists } from './index_addNewAlcohol.js';
-import { calculateAlcohol } from './index_calculateAlcohol.js';
+import {beers} from './alcoholLists/beers.js';
+import {wines} from './alcoholLists/wines.js';
+import {liquor} from './alcoholLists/liquor.js';
+import {addNewAlcoholToLists} from './index_addNewAlcohol.js';
+import {calculateAlcohol} from './index_calculateAlcohol.js';
+// Import the functions you need from the SDKs you need
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import {getDatabase, get, ref, set} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyA6angt8_xASccfe0jBmuPjm0LM71jgoG4",
+    authDomain: "alcoholcalculatorxd.firebaseapp.com",
+    databaseURL: "https://alcoholcalculatorxd-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "alcoholcalculatorxd",
+    storageBucket: "alcoholcalculatorxd.appspot.com",
+    messagingSenderId: "701660401382",
+    appId: "1:701660401382:web:736fd4dfdd08a17aecf527"
+};
+const app = initializeApp(firebaseConfig);
 
 window.onload = function () {
 
+    let userCreds = JSON.parse(sessionStorage.getItem('user-creds'));
+
     let addedAlcohol = [];
 
-    document.getElementById("beer").addEventListener('click', function () {
-        displayAlcohol(beers);
-    });
-    document.getElementById("wines").addEventListener('click', function () {
-        displayAlcohol(wines);
-    });
-    document.getElementById("liquor").addEventListener('click', function () {
-        displayAlcohol(liquor);
-    });
+    if (!userCreds) {
+        document.getElementById("beer").addEventListener('click', function () {
+            displayAlcohol(beers);
+        });
+        document.getElementById("wines").addEventListener('click', function () {
+            displayAlcohol(wines);
+        });
+        document.getElementById("liquor").addEventListener('click', function () {
+            displayAlcohol(liquor);
+        });
+    }
+
+    if (userCreds) {
+        document.getElementById("beer").addEventListener('click', function () {
+            displayAlcohol(beers);
+            //fetchAlcoholListsFromDatabase(beers);
+        });
+        document.getElementById("wines").addEventListener('click', function () {
+            //fetchAlcoholListsFromDatabase(wines);
+            displayAlcohol(wines);
+        });
+        document.getElementById("liquor").addEventListener('click', function () {
+            //fetchAlcoholListsFromDatabase(liquor);
+            displayAlcohol(liquor);
+        });
+    }
     document.getElementById("deleteAlcohol").addEventListener("click", function () {
         deleteAddedAlcohol();
     });
@@ -27,13 +63,13 @@ window.onload = function () {
     document.getElementById("closeModal").addEventListener("click", function () {
         console.log(addedAlcohol)
     });
-    document.getElementById("add-more-alcohol").addEventListener("click", function() {
+    document.getElementById("add-more-alcohol").addEventListener("click", function () {
         var modal = new bootstrap.Modal(document.getElementById('add-more-alcohol-modal'));
 
         modal.show();
     });
 
-    document.getElementById("add-To-List").addEventListener("click", function(event) {
+    document.getElementById("add-To-List").addEventListener("click", function (event) {
         addNewAlcoholToLists(beers, wines, liquor);
     });
     document.getElementById("calculate").addEventListener("click", function () {
@@ -156,4 +192,33 @@ window.onload = function () {
         addedAlcohol = [];
         renderAddedAlcohol();
     }
+
+    function fetchAlcoholListsFromDatabase(alcoholType) {
+        const db = getDatabase();
+        let userCreds = JSON.parse(sessionStorage.getItem('user-creds'));
+        const alcoholRef = ref(db, 'users/' + userCreds.uid + '/customAlcoholLists');
+
+        get(alcoholRef)
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    // Assign fetched data to your existing arrays
+                    beers = data.beers || [];
+                    wines = data.wines || [];
+                    liquor = data.liquor || [];
+                    // Display the fetched alcohol lists
+                    displayAlcohol(alcoholType); // You can choose which list to display initially
+                } else {
+                    console.log("No alcohol lists found in the database.");
+                    // Display default alcohol lists (optional)
+                    // displayAlcohol(beers); // Or display default arrays
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching alcohol lists:", error);
+                // Display default alcohol lists or handle the error as needed
+                // displayAlcohol(beers); // Or display default arrays
+            });
+    }
+
 };
