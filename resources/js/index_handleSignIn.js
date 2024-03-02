@@ -4,7 +4,10 @@ let loggedIn = document.getElementById("logged-in-status")
 let accountDetails = document.getElementById("profile-btn");
 let logOutBtn = document.getElementById('logout-btn');
 
-loggedIn.innerHTML = "Jseš přihlášen jako: " + userCreds.email;
+if (userCreds) {
+    loggedIn.innerHTML = "Jseš přihlášen jako: " + userCreds.email;
+
+}
 
 let checkIfSigned = () => {
     if (sessionStorage.getItem("user-creds")) {

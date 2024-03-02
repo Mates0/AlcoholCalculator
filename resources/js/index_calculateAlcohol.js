@@ -25,21 +25,23 @@ export function calculateAlcohol(addedAlcohol) {
     localStorage.setItem('selectedTime', timeInput);
     localStorage.setItem('timeAndVolume', JSON.stringify(addedAlcohol));
 
-    let userInfo = JSON.parse(sessionStorage.getItem("user-info"));
     let userCreds = JSON.parse(sessionStorage.getItem("user-creds"));
+    console.log("test")
 
-    if(userInfo && userCreds) {
-        saveSessionStorageToUserProfile(userInfo, userCreds, addedAlcohol)
+    if (userCreds) {
+        saveSessionStorageToUserProfile(userCreds, addedAlcohol)
             .then(() => {
                 window.location.href = 'graphPage.html';
             })
             .catch((error) => {
                 console.error("Error saving data:", error);
             });
+    } else {
+        window.location.href = 'graphPage.html';
     }
 }
 
-function saveSessionStorageToUserProfile(userInfo, userCreds, addedAlcohol) {
+function saveSessionStorageToUserProfile(userCreds, addedAlcohol) {
     const db = getDatabase();
 
     const userProfileRef = ref(db, 'users/' + userCreds.uid + '/historyOfCalculatedAlcohol');
