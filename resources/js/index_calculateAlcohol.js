@@ -26,7 +26,6 @@ export function calculateAlcohol(addedAlcohol) {
     localStorage.setItem('timeAndVolume', JSON.stringify(addedAlcohol));
 
     let userCreds = JSON.parse(sessionStorage.getItem("user-creds"));
-    console.log("test")
 
     if (userCreds) {
         saveSessionStorageToUserProfile(userCreds, addedAlcohol)

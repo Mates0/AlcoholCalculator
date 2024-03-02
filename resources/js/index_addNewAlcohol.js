@@ -36,7 +36,9 @@ export function addNewAlcoholToLists(beers, wines, liquor) {
         liquor.push(alcohol);
     }
 
-    saveCustomAlcoholListsToDatabase(beers, wines, liquor, userCreds.uid);
+    if (userCreds) {
+        saveCustomAlcoholListsToDatabase(beers, wines, liquor, userCreds.uid);
+    }
 
     document.getElementById("alcohol-name").value = "";
     document.getElementById("percentage-of-alcohol").value = "";
