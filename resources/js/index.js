@@ -19,6 +19,12 @@ const firebaseConfig = {
     messagingSenderId: "701660401382",
     appId: "1:701660401382:web:736fd4dfdd08a17aecf527"
 };
+
+const alcoholData = {
+    beers: [],
+    wines: [],
+    liquor: []
+};
 const app = initializeApp(firebaseConfig);
 
 window.onload = function () {
@@ -41,16 +47,16 @@ window.onload = function () {
 
     if (userCreds) {
         document.getElementById("beer").addEventListener('click', function () {
-            displayAlcohol(beers);
-            //fetchAlcoholListsFromDatabase(beers);
+            fetchAlcoholListsFromDatabase(alcoholData.beers);
+            //displayAlcohol(beers);
         });
         document.getElementById("wines").addEventListener('click', function () {
-            //fetchAlcoholListsFromDatabase(wines);
-            displayAlcohol(wines);
+            fetchAlcoholListsFromDatabase(alcoholData.wines);
+            //displayAlcohol(wines);
         });
         document.getElementById("liquor").addEventListener('click', function () {
-            //fetchAlcoholListsFromDatabase(liquor);
-            displayAlcohol(liquor);
+            fetchAlcoholListsFromDatabase(alcoholData.liquor);
+            //displayAlcohol(liquor);
         });
     }
     document.getElementById("deleteAlcohol").addEventListener("click", function () {
@@ -154,8 +160,13 @@ window.onload = function () {
     }
 
     function findAlcoholByName(name) {
-        let allAlcohols = [...beers, ...wines, ...liquor];
-        return allAlcohols.find(alcohol => alcohol.name === name);
+        if (userCreds) {
+            let allAlcohols = [...alcoholData.beers, ...alcoholData.wines, ...alcoholData.liquor];
+            return allAlcohols.find(alcohol => alcohol.name === name);
+        } else {
+            let allAlcohols = [...beers, ...wines, ...liquor];
+            return allAlcohols.find(alcohol => alcohol.name === name);
+        }
     }
 
 
@@ -202,10 +213,11 @@ window.onload = function () {
             .then((snapshot) => {
                 if (snapshot.exists()) {
                     const data = snapshot.val();
+                    console.log(data)
                     // Assign fetched data to your existing arrays
-                    beers = data.beers || [];
-                    wines = data.wines || [];
-                    liquor = data.liquor || [];
+                    alcoholData.beers = data.beers;
+                    alcoholData.wines = data.wines;
+                    alcoholData.liquor = data.liquor;
                     // Display the fetched alcohol lists
                     displayAlcohol(alcoholType); // You can choose which list to display initially
                 } else {
