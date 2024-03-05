@@ -2,6 +2,7 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import {getDatabase, get, ref, child} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 import {getAuth, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { validateLogin } from "./validate_login.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,7 +29,15 @@ let loginBtn = document.getElementById("login-btn")
 
 let signInUser = evt => {
     evt.preventDefault()
-    signInWithEmailAndPassword(auth, emailInput.value, passwordInput.value)
+
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    if (!validateLogin(email, password)) {
+        return;
+    }
+
+    signInWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
             get(child(dbRef, "users/" + userCredentials.user.uid)).then((snapshot) => {
                 if (snapshot.exists()) {
@@ -44,6 +53,7 @@ let signInUser = evt => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode, errorMessage)
+            alert(errorMessage)
             // ..
         });
 }

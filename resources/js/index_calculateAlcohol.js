@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import {getDatabase, get, ref, set} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+import {validateIndex} from "./validate_index.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,10 +19,15 @@ const app = initializeApp(firebaseConfig);
 
 export function calculateAlcohol(addedAlcohol) {
     let weight = document.getElementById("weightForm").value
-    localStorage.setItem('inputValue', weight);
     let gender = document.getElementById("genderForm").value
-    localStorage.setItem("selectedGender", gender)
     let timeInput = document.getElementById("timeForm").value;
+
+    if (!validateIndex(weight,timeInput,addedAlcohol)) {
+        return;
+    }
+
+    localStorage.setItem('inputValue', weight);
+    localStorage.setItem("selectedGender", gender)
     localStorage.setItem('selectedTime', timeInput);
     localStorage.setItem('timeAndVolume', JSON.stringify(addedAlcohol));
 
