@@ -79,31 +79,81 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const promileToTimeArray = createCalculatedArray(timeNeeded, weightOfBurnedAlcohol, weight, genderValue);
 
-    // Graf
-    const ctx = document.getElementById('myChart');
+    const colors = {
+        purple: {
+            default: "rgba(149, 76, 233, 1)",
+            half: "rgba(149, 76, 233, 0.5)",
+            quarter: "rgba(149, 76, 233, 0.25)",
+            zero: "rgba(149, 76, 233, 0)"
+        },
+        indigo: {
+            default: "rgba(80, 102, 120, 1)",
+            quarter: "rgba(80, 102, 120, 0.25)"
+        }
+    };
+    let ctx = document.getElementById('canvas').getContext('2d');
 
-    new Chart(ctx, {
-        type: 'line',
+    const options = {
+        type: "line",
         data: {
             labels: timeArray,
-            datasets: [{
-                label: 'Hladina alkoholu',
-                data: promileToTimeArray,
-                borderWidth: 3,
-                fill: false,
-                borderColor: 'rgba(255, 0, 0)',
-                tension: 0.1,
-                backgroundColor: 'rgba(255, 0, 0, 0.5)',
-                hoverBorderWidth: 10
-            }]
+            datasets: [
+                {
+                    fill: true,
+                    backgroundColor: "rgba(149, 76, 233, 0.1)",
+                    pointBackgroundColor: colors.purple.default,
+                    borderColor: colors.purple.default,
+                    data: promileToTimeArray,
+                    lineTension: 0.1,
+                    borderWidth: 2,
+                    pointRadius: 5
+                }
+            ]
         },
         options: {
+            layout: {
+                padding: 10
+            },
+            responsive: true,
+            legend: {
+                display: false
+            },
+
             scales: {
-                y: {
-                    beginAtZero: true
-                }
+                xAxes: [
+                    {
+                        gridLines: {
+                            display: false
+                        },
+                        ticks: {
+                            padding: 10,
+                            autoSkip: false,
+                            maxRotation: 15,
+                            minRotation: 15
+                        }
+                    }
+                ],
+                yAxes: [
+                    {
+                        scaleLabel: {
+                            display: true,
+                            labelString: "%. alkoholu v krvi",
+                            padding: 10
+                        },
+                        gridLines: {
+                            display: true,
+                            color: colors.indigo.quarter
+                        },
+                        ticks: {
+                            beginAtZero: false,
+                            max: 63,
+                            min: 57,
+                            padding: 10
+                        }
+                    }
+                ]
             }
         }
-    });
-
+    };
+    window.myLine = new Chart(ctx, options);
 });
