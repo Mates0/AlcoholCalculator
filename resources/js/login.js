@@ -26,7 +26,7 @@ const dbRef = ref(db);
 let emailInput = document.getElementById("email-input")
 let passwordInput = document.getElementById("password-input")
 let loginBtn = document.getElementById("login-btn")
-
+let wrongPassword = document.getElementById("wrong-password-placeholder");
 let signInUser = evt => {
     evt.preventDefault()
 
@@ -36,6 +36,8 @@ let signInUser = evt => {
     if (!validateLogin(email, password)) {
         return;
     }
+
+    loginBtn.innerHTML = "Přihlasování..."
 
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
@@ -53,8 +55,11 @@ let signInUser = evt => {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode, errorMessage)
-            alert(errorMessage)
-            // ..
+            loginBtn.innerHTML = "Přihlásit se"
+            if (errorCode === "auth/invalid-credential") {
+                wrongPassword.className = "d-block";
+                wrongPassword.innerHTML = "Nesprávné heslo nebo email"
+            }
         });
 }
 
