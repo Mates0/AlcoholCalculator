@@ -27,6 +27,7 @@ let emailInput = document.getElementById("email-input")
 let passwordInput = document.getElementById("password-input")
 let loginBtn = document.getElementById("login-btn")
 let wrongPassword = document.getElementById("wrong-password-placeholder");
+let borderBottomPassword = document.getElementById("password-input");
 let signInUser = evt => {
     evt.preventDefault()
 
@@ -59,6 +60,7 @@ let signInUser = evt => {
             if (errorCode === "auth/invalid-credential") {
                 wrongPassword.className = "d-block";
                 wrongPassword.innerHTML = "Nesprávné heslo nebo email"
+                borderBottomPassword.style.borderBottom = "1px solid red";
             }
         });
 }

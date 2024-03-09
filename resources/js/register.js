@@ -24,8 +24,11 @@ const auth = getAuth(app);
 
 let emailInput = document.getElementById("email-input")
 let passwordInput = document.getElementById("password-input")
+let repeatEmailInput = document.getElementById("wrong-email-placeholder")
 let repeatPasswordInput = document.getElementById("repeat-password-input")
 let registerBtn = document.getElementById("register-btn")
+let wrongPassword = document.getElementById("wrong-password-placeholder");
+
 
 let registerAndSignInUser = evt => {
     evt.preventDefault()
@@ -37,6 +40,8 @@ let registerAndSignInUser = evt => {
     if (!validateRegister(email, password, repeatPassword)) {
         return;
     }
+
+    registerBtn.innerHTML = "Registrování..."
 
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredentials) => {
@@ -56,7 +61,13 @@ let registerAndSignInUser = evt => {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.error("Error registering user:", errorCode, errorMessage);
+            console.error(errorCode, errorMessage);
+            registerBtn.innerHTML = "Registrovat se"
+            if (errorCode === "auth/email-already-in-use") {
+                repeatEmailInput.className = "d-block";
+                repeatEmailInput.innerHTML = "E-mail je již používán"
+                emailInput.style.borderBottom = "1px solid red";
+            }
         });
 }
 
