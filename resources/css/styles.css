@@ -1,5 +1,85 @@
-h1 {
-  font-size: 40px;
+body {
+  background-color: #1F1F1F;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Verdana";
+  color: white;
+}
+
+label {
+  font-family: "Verdana";
+  color: white;
+}
+
+nav {
+  background-color: #1c2330;
+}
+
+.three-forms {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+}
+
+.center-forms {
+  display: flex;
+  justify-content: center;
+}
+
+.form-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.form-content .form-items {
+  border: 3px solid #fff;
+  padding: 40px;
+  display: inline-block;
+  width: 100%;
+  min-width: 540px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  text-align: left;
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.form-content input[type=text], .form-content input[type=password], .form-content input[type=email], .form-content select, .form-content input[type=number], .form-content input[type=time] {
+  width: 100%;
+  padding: 9px 20px;
+  text-align: left;
+  border: 0;
+  outline: 0;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 15px;
+  font-weight: 300;
+  color: #8D8D8D;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  margin-top: 16px;
+}
+
+.sliders-div {
+  margin-top: 50px;
+}
+
+.modal-content {
+  background-color: #1F1F1F;
+}
+
+#beer, #wines, #liquor {
+  border: 0;
+  background-color: #1c2330;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-radius: 0;
 }
 
 /*# sourceMappingURL=styles.css.map */

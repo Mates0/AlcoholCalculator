@@ -51,15 +51,12 @@ window.onload = function () {
     if (userCreds) {
         document.getElementById("beer").addEventListener('click', function () {
             fetchAlcoholListsFromDatabase(alcoholData.beers);
-            //displayAlcohol(beers);
         });
         document.getElementById("wines").addEventListener('click', function () {
             fetchAlcoholListsFromDatabase(alcoholData.wines);
-            //displayAlcohol(wines);
         });
         document.getElementById("liquor").addEventListener('click', function () {
             fetchAlcoholListsFromDatabase(alcoholData.liquor);
-            //displayAlcohol(liquor);
         });
     }
     document.getElementById("deleteAlcohol").addEventListener("click", function () {
@@ -104,7 +101,11 @@ window.onload = function () {
         alcoholType.forEach(alcohol => {
             let cardDiv = document.createElement('div');
             cardDiv.classList.add('card');
+            cardDiv.classList.add("bg-dark")
+            cardDiv.classList.add("text-white")
+            cardDiv.style.border = "1px solid white"
             cardDiv.style.width = '18rem';
+            cardDiv.style.margin = '2px';
             alcoholContainer.appendChild(cardDiv);
 
             let cardBodyDiv = document.createElement('div');
@@ -123,8 +124,8 @@ window.onload = function () {
 
             let addButton = document.createElement('button');
             addButton.type = 'button';
-            addButton.classList.add('btn', 'btn-primary');
-            addButton.textContent = 'Přidat';
+            addButton.classList.add('btn', 'btn-success', "btn-rounded");
+            addButton.textContent = '+';
             addButton.setAttribute('data-toggle', 'modal');
             addButton.setAttribute('data-target', '#exampleModal');
             addButton.addEventListener('click', function () {
@@ -188,7 +189,7 @@ window.onload = function () {
             let deleteButton = document.createElement('button');
             deleteButton.type = 'button';
             deleteButton.classList.add('btn', 'btn-danger');
-            deleteButton.textContent = 'Vymazat';
+            deleteButton.textContent = '-';
             deleteButton.addEventListener('click', function () {
                 addedAlcohol.splice(index, 1);
                 renderAddedAlcohol();

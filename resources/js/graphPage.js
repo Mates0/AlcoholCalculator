@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let storedTime = localStorage.getItem('selectedTime');
     let addedAlcoholObject = localStorage.getItem("timeAndVolume")
     let addedAlcohol = JSON.parse(addedAlcoholObject);
+    console.log(weight,gender,storedTime,addedAlcoholObject,addedAlcohol)
     function calculateWeightOfAlcoholFromArray() {
         let alcoholContent = 0
         let volume = 0
@@ -79,18 +80,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const promileToTimeArray = createCalculatedArray(timeNeeded, weightOfBurnedAlcohol, weight, genderValue);
 
-    const colors = {
-        purple: {
-            default: "rgba(149, 76, 233, 1)",
-            half: "rgba(149, 76, 233, 0.5)",
-            quarter: "rgba(149, 76, 233, 0.25)",
-            zero: "rgba(149, 76, 233, 0)"
-        },
-        indigo: {
-            default: "rgba(80, 102, 120, 1)",
-            quarter: "rgba(80, 102, 120, 0.25)"
-        }
-    };
     let ctx = document.getElementById('canvas').getContext('2d');
 
     const options = {
@@ -100,59 +89,22 @@ document.addEventListener('DOMContentLoaded', function () {
             datasets: [
                 {
                     fill: true,
-                    backgroundColor: "rgba(149, 76, 233, 0.1)",
-                    pointBackgroundColor: colors.purple.default,
-                    borderColor: colors.purple.default,
+                    backgroundColor: "rgba(255, 0, 0, 0.1)",
+                    pointBackgroundColor: "rgba(255, 0, 0, 1)",
+                    borderColor: "rgba(255, 0, 0, 1)",
                     data: promileToTimeArray,
                     lineTension: 0.1,
                     borderWidth: 2,
-                    pointRadius: 5
+                    pointRadius: 5,
+                    label: "Hladina alkoholu v krvi"
                 }
             ]
         },
         options: {
-            layout: {
-                padding: 10
-            },
             responsive: true,
             legend: {
-                display: false
+                display: false,
             },
-
-            scales: {
-                xAxes: [
-                    {
-                        gridLines: {
-                            display: false
-                        },
-                        ticks: {
-                            padding: 10,
-                            autoSkip: false,
-                            maxRotation: 15,
-                            minRotation: 15
-                        }
-                    }
-                ],
-                yAxes: [
-                    {
-                        scaleLabel: {
-                            display: true,
-                            labelString: "%. alkoholu v krvi",
-                            padding: 10
-                        },
-                        gridLines: {
-                            display: true,
-                            color: colors.indigo.quarter
-                        },
-                        ticks: {
-                            beginAtZero: false,
-                            max: 63,
-                            min: 57,
-                            padding: 10
-                        }
-                    }
-                ]
-            }
         }
     };
     window.myLine = new Chart(ctx, options);
