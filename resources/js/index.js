@@ -34,6 +34,8 @@ window.onload = function () {
 
     let userCreds = JSON.parse(sessionStorage.getItem('user-creds'));
 
+    let scareLabel = document.getElementById('scare-label');
+
     let addedAlcohol = [];
 
     if (!userCreds) {
@@ -46,6 +48,7 @@ window.onload = function () {
         document.getElementById("liquor").addEventListener('click', function () {
             displayAlcohol(liquor);
         });
+        scareLabel.classList.add('d-block');
     }
 
     if (userCreds) {
@@ -58,6 +61,7 @@ window.onload = function () {
         document.getElementById("liquor").addEventListener('click', function () {
             fetchAlcoholListsFromDatabase(alcoholData.liquor);
         });
+        scareLabel.classList.add('d-none');
     }
     document.getElementById("deleteAlcohol").addEventListener("click", function () {
         deleteAddedAlcohol();
@@ -184,7 +188,8 @@ window.onload = function () {
         addedAlcohol.forEach((alcohol, index) => {
             let listItem = document.createElement('li');
             listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
-            listItem.textContent = alcohol.name + " " + alcohol.volume + "(l)" + "- Čas Požití:" + alcohol.timeOfConsumption;
+            listItem.style.borderBottom = "1px solid white"
+            listItem.textContent = alcohol.timeOfConsumption + " " + alcohol.name + " " + alcohol.volume + " l";
 
             let deleteButton = document.createElement('button');
             deleteButton.type = 'button';
@@ -221,12 +226,10 @@ window.onload = function () {
                 if (snapshot.exists()) {
                     const data = snapshot.val();
                     console.log(data)
-                    // Assign fetched data to your existing arrays
                     alcoholData.beers = data.beers;
                     alcoholData.wines = data.wines;
                     alcoholData.liquor = data.liquor;
-                    // Display the fetched alcohol lists
-                    displayAlcohol(alcoholType); // You can choose which list to display initially
+                    displayAlcohol(alcoholType);
                 } else {
                     let alcType
                     if (alcoholType === alcoholData.beers) {
@@ -241,14 +244,10 @@ window.onload = function () {
                     noAlcoholInDB = true
                     displayAlcohol(alcType);
                     console.log("No alcohol lists found in the database.");
-                    // Display default alcohol lists (optional)
-                    // displayAlcohol(beers); // Or display default arrays
                 }
             })
             .catch((error) => {
                 console.error("Error fetching alcohol lists:", error);
-                // Display default alcohol lists or handle the error as needed
-                // displayAlcohol(beers); // Or display default arrays
             });
     }
 

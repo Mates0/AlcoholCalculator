@@ -1,9 +1,13 @@
+$website-font: "Verdana";
+
 body {
-  font-family: "Fira Sans", sans-serif;
+  font-family: $website-font;
   font-size: 1rem;
   background-color: #1F1F1F;
-  color: #506678;
-  padding: 15px;
+}
+
+nav {
+  background-color: #1c2330;
 }
 
 .wrapper {
@@ -22,26 +26,4 @@ body {
   float: left;
   text-align: center;
   padding: 15px 0;
-}
-
-a {
-  text-decoration: none;
-  color: #506678;
-  border-bottom: 1px solid rgba(80, 102, 120, 0.25);
-  transition: all 0.35s;
-
-  &:hover {
-    color: #677f93;
-    border-bottom: 1px solid rgba(149, 76, 233, 0.5);
-  }
-}
-
-@media (min-width: 960px) {
-  body {
-    padding: 25px;
-  }
-
-  .note {
-    padding: 25px 0;
-  }
 }

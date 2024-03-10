@@ -2,12 +2,52 @@ document.addEventListener('DOMContentLoaded', function () {
     let genderValue;
     let genderValue2;
 
+    let userCreds = JSON.parse(sessionStorage.getItem("user-creds"));
     let weight = localStorage.getItem('inputValue');
     let gender = localStorage.getItem("selectedGender")
     let storedTime = localStorage.getItem('selectedTime');
     let addedAlcoholObject = localStorage.getItem("timeAndVolume")
     let addedAlcohol = JSON.parse(addedAlcoholObject);
-    console.log(weight,gender,storedTime,addedAlcoholObject,addedAlcohol)
+
+    let loginBtn = document.getElementById('login-btn');
+    let registerBtn = document.getElementById('register-btn');
+    let profileBtn = document.getElementById('profile-btn');
+    let logoutBtn = document.getElementById('logout-btn');
+
+    loginBtn.addEventListener('click', function () {
+        window.location.href = 'login.html';
+    })
+    registerBtn.addEventListener('click', function () {
+        window.location.href = 'register.html';
+    })
+    profileBtn.addEventListener('click', function () {
+        window.location.href = 'profileDetail.html';
+    })
+logoutBtn.addEventListener('click', function () {
+        signOut();
+    })
+    let signOut = () => {
+        sessionStorage.removeItem('user-creds');
+        sessionStorage.removeItem('user-info');
+        document.getElementById('login-btn').classList.remove('d-none');
+        document.getElementById('register-btn').classList.remove('d-none');
+        document.getElementById('profile-btn').classList.add('d-none');
+        document.getElementById('logout-btn').classList.add('d-none');
+        window.location.href = 'index.html';
+    }
+    if (userCreds) {
+        loginBtn.classList.add("d-none");
+        registerBtn.classList.add("d-none");
+        profileBtn.classList.remove("d-none");
+        logoutBtn.classList.remove("d-none");
+    }
+    if (!userCreds) {
+        loginBtn.classList.remove("d-none");
+        registerBtn.classList.remove("d-none");
+        profileBtn.classList.add("d-none");
+        logoutBtn.classList.add("d-none");
+    }
+
     function calculateWeightOfAlcoholFromArray() {
         let alcoholContent = 0
         let volume = 0
@@ -52,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         for (let i = 0; i < timeNeeded; i++) {
             let nextTime = new Date(startTime.getTime() + i * 60 * 60 * 1000);
-            let formattedTime = nextTime.toLocaleTimeString('cs', { hour: 'numeric', minute: 'numeric' });
+            let formattedTime = nextTime.toLocaleTimeString('cs', {hour: 'numeric', minute: 'numeric'});
             timeArray.push(formattedTime);
         }
 

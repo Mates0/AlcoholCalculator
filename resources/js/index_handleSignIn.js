@@ -4,7 +4,7 @@ let accountDetails = document.getElementById("profile-btn");
 let logOutBtn = document.getElementById('logout-btn');
 
 let checkIfSigned = () => {
-    if (sessionStorage.getItem("user-creds")) {
+    if (userCreds) {
         document.getElementById('login-btn').classList.add('d-none');
         document.getElementById('register-btn').classList.add('d-none');
         document.getElementById('profile-btn').classList.remove('d-none');

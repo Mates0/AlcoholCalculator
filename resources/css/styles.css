@@ -16,6 +16,10 @@ nav {
   background-color: #1c2330;
 }
 
+.scare-label {
+  color: red;
+}
+
 .three-forms {
   width: 35%;
   display: flex;
@@ -60,7 +64,6 @@ nav {
   background-color: #fff;
   font-size: 15px;
   font-weight: 300;
-  color: #8D8D8D;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   margin-top: 16px;
