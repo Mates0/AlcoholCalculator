@@ -56,6 +56,7 @@
                             <label>Váha</label>
                             <input class="form-control" type="number" name="Váha" placeholder="60"
                                    id="weightForm">
+                            <small id="no-weight-placeholder" class="d-none">Zadejte váhu</small>
                         </div>
                         <div class="col-md-12">
                             <label>Pohlaví</label>
@@ -64,11 +65,13 @@
                                 <option value="Muž">Muž</option>
                                 <option value="Žena">Žena</option>
                             </select>
+                            <small id="no-gender-placeholder" class="d-none">Zadejte pohlaví</small>
                         </div>
                         <div class="col-md-12">
                             <label>Čas konzumace</label>
                             <input class="form-control" type="time" name="time" placeholder="Zadej čas konzumace"
                                    id="timeForm">
+                            <small id="no-time-placeholder" class="d-none">Zadejte čas konzumace</small>
                         </div>
                     </form>
                 </div>
@@ -187,5 +190,6 @@
 
 </form>
 <script src="../js/index_handleSignIn.js" type="module"></script>
+<script src="../js/validate_index.js"></script>
 </body>
 </html>
