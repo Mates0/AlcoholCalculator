@@ -29,7 +29,6 @@ export function validateIndex(weight,timeInput,addedAlcohol) {
     if (genderForm.value !== "Muž" && genderForm.value !== "Žena") {
         genderForm.style.border = "3px solid red";
         noGender.className = "d-block";
-        console.log("test");
     } else {
         genderForm.style.border = "none";
         noGender.className = "d-none";
@@ -50,3 +49,11 @@ export function validateIndex(weight,timeInput,addedAlcohol) {
     }
     return true;
 }
+
+
+//:TODO: Add validation for addAlcoholToList and add validation for adding custom alcohol
+/*
+let addAlcoholTimeForm = document.getElementById("time-form")
+let volumeForm = document.getElementById("volume-form")
+let noVolume = document.getElementById("addalc-wrong-time")
+let noTimeAddAlc = document.getElementById("addalc-wrong-time")*/

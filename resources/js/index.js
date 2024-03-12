@@ -170,8 +170,6 @@ window.onload = function () {
             addedAlcohol.push(alcohol);
             renderAddedAlcohol();
             console.log(addedAlcohol)
-        } else {
-            alert("Prosím vyplňte všechny údaje.")
         }
     }
 
