@@ -46,16 +46,11 @@ nav {
   display: inline-block;
   width: 100%;
   min-width: 540px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
   border-radius: 10px;
   text-align: left;
-  -webkit-transition: all 0.4s ease;
-  transition: all 0.4s ease;
 }
 
 .form-content input[type=text], .form-content input[type=password], .form-content input[type=email], .form-content select, .form-content input[type=number], .form-content input[type=time] {
-  width: 100%;
   padding: 9px 20px;
   text-align: left;
   border: 0;
@@ -63,14 +58,40 @@ nav {
   border-radius: 6px;
   background-color: #fff;
   font-size: 15px;
-  font-weight: 300;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  margin-top: 16px;
 }
 
 .sliders-div {
   margin-top: 50px;
+}
+
+.center-two-elements {
+  display: flex;
+  max-width: 100%;
+  min-height: 30rem;
+}
+
+.list-group {
+  flex-direction: row;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.added-alcohol-div {
+  margin-top: 50px;
+  border: 3px solid #fff;
+  border-bottom: 0;
+  border-right: 0;
+}
+
+.center-two-elements {
+  width: 100%;
+}
+
+.calculate-btns-div {
+  display: flex;
+  justify-content: center;
 }
 
 .modal-content {

@@ -108,7 +108,7 @@ window.onload = function () {
             cardDiv.classList.add("bg-dark")
             cardDiv.classList.add("text-white")
             cardDiv.style.border = "1px solid white"
-            cardDiv.style.width = '18rem';
+            cardDiv.style.width = '12rem';
             cardDiv.style.margin = '2px';
             alcoholContainer.appendChild(cardDiv);
 
@@ -139,6 +139,17 @@ window.onload = function () {
                 document.getElementById('volume-form').value = '';
             });
             cardBodyDiv.appendChild(addButton);
+
+            let deleteButton = document.createElement('button');
+            deleteButton.type = 'button';
+            deleteButton.classList.add('btn', 'btn-danger', "btn-rounded");
+            deleteButton.textContent = '-';
+            deleteButton.style.marginLeft = "15px"
+            deleteButton.addEventListener('click', function () {
+                alcoholType.splice(alcoholType.indexOf(alcohol), 1);
+                displayAlcohol(alcoholType);
+            });
+            cardBodyDiv.appendChild(deleteButton);
         });
     }
 
@@ -187,8 +198,10 @@ window.onload = function () {
 
         addedAlcohol.forEach((alcohol, index) => {
             let listItem = document.createElement('li');
-            listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+            listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center', "text-white");
             listItem.style.borderBottom = "1px solid white"
+            listItem.style.fontSize = "20px"
+            listItem.style.fontFamily = "Verdana"
             listItem.textContent = alcohol.timeOfConsumption + " " + alcohol.name + " " + alcohol.volume + " l";
 
             let deleteButton = document.createElement('button');

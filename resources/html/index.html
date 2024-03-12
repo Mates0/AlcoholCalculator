@@ -28,57 +28,81 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <button type="button" class="btn btn-outline-light btn-rounded" id="add-more-alcohol">Přidat vlastní alkohol</button>
+                    <button type="button" class="btn btn-outline-light btn-rounded" id="add-more-alcohol">Přidat vlastní
+                        alkohol
+                    </button>
                 </li>
             </ul>
             <div class="div-buttons">
                 <button type="button" class="btn btn-outline-success btn-rounded" id="login-btn">Přihlásit se</button>
                 <button type="button" class="btn btn-outline-warning btn-rounded" id="register-btn">Registrovat se
                 </button>
-                <button type="button" class="btn btn-outline-info btn-rounded d-none" id="profile-btn">Detail Profilu</button>
-                <button type="button" class="btn btn-outline-danger btn-rounded d-none" id="logout-btn">Odhlásit se</button>
+                <button type="button" class="btn btn-outline-info btn-rounded d-none" id="profile-btn">Detail Profilu
+                </button>
+                <button type="button" class="btn btn-outline-danger btn-rounded d-none" id="logout-btn">Odhlásit se
+                </button>
             </div>
         </div>
     </div>
 </nav>
 <form>
     <div class="form-body">
-            <div class="form-holder">
-                <div class="form-content">
-                    <div class="form-items">
-                        <h3>Zadej údaje</h3>
-                        <form>
-                            <div class="col-md-12">
-                                <input class="form-control" type="number" name="Váha" placeholder="Váha (kg)"
-                                       id="weightForm">
-                            </div>
-                            <div class="col-md-12">
-                                <select class="form-select mt-3" id="genderForm">
-                                    <option selected disabled value="">Pohlaví</option>
-                                    <option value="Muž">Muž</option>
-                                    <option value="Žena">Žena</option>
-                                </select>
-                            </div>
-                            <div class="col-md-12">
-                                <input class="form-control" type="time" name="time" placeholder="Zadej čas konzumace"
-                                       id="timeForm">
-                            </div>
-                        </form>
-                    </div>
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3>Zadej údaje</h3>
+                    <form>
+                        <div class="col-md-12">
+                            <label>Váha</label>
+                            <input class="form-control" type="number" name="Váha" placeholder="60"
+                                   id="weightForm">
+                        </div>
+                        <div class="col-md-12">
+                            <label>Pohlaví</label>
+                            <select class="form-select" id="genderForm">
+                                <option selected disabled value="">Pohlaví</option>
+                                <option value="Muž">Muž</option>
+                                <option value="Žena">Žena</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Čas konzumace</label>
+                            <input class="form-control" type="time" name="time" placeholder="Zadej čas konzumace"
+                                   id="timeForm">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    <div class="sliders-div">
-        <div class="list-group d-flex flex-row">
-            <a href="#" class="list-group-item list-group-item-action text-white" id="beer">Piva</a>
-            <a href="#" class="list-group-item list-group-item-action text-white" id="wines">Vína</a>
-            <a href="#" class="list-group-item list-group-item-action text-white" id="liquor">Tvrdý alkohol</a>
+    <div class="center-two-elements">
+        <div class="sliders-alcohol-container w-50">
+            <div class="sliders-div">
+                <div class="list-group d-flex flex-row">
+                    <a href="#" class="list-group-item list-group-item-action text-white" id="beer">Piva</a>
+                    <a href="#" class="list-group-item list-group-item-action text-white" id="wines">Vína</a>
+                    <a href="#" class="list-group-item list-group-item-action text-white" id="liquor">Tvrdý
+                        alkohol</a>
+                </div>
+            </div>
+            <div id="alcohol-container" class="d-flex flex-wrap">
+
+            </div>
+        </div>
+        <div class="added-alcohol-div w-50">
+            <h3 class="top-text">List přidaného alkoholu:</h3>
+            <div>
+                <div id="added-alcohol-container">
+                </div>
+                <div class="calculate-btns-div">
+                    <button type="button" class="btn btn-outline-danger btn-rounded" id="deleteAlcohol">Vymazat vše
+                    </button>
+                    <button type="button" class="btn btn-outline-primary btn-rounded" id="calculate">Vypočítat
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div id="alcohol-container" class="d-flex flex-wrap">
-    </div>
-
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -86,7 +110,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"></h5>
-                    <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close" id="closeModal">
+                    <button type="button" class="btn-close btn-close-white" data-dismiss="modal" aria-label="Close"
+                            id="closeModal">
                     </button>
                 </div>
                 <div class="modal-body">
@@ -102,8 +127,10 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger btn-rounded" data-dismiss="modal">Zrušit</button>
-                    <button type="button" class="btn btn-outline-success btn-rounded" id="addAlcoholToList" data-dismiss="modal">Přidat
+                    <button type="button" class="btn btn-outline-danger btn-rounded" data-dismiss="modal">Zrušit
+                    </button>
+                    <button type="button" class="btn btn-outline-success btn-rounded" id="addAlcoholToList"
+                            data-dismiss="modal">Přidat
                     </button>
                 </div>
             </div>
@@ -111,7 +138,8 @@
     </div>
 
     <!-- Add Alcohol Modal -->
-    <div class="modal fade" id="add-more-alcohol-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="add-more-alcohol-modal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -141,24 +169,22 @@
                             </select>
                         </div>
 
-                        <label class="scare-label" id="scare-label">Alkohol se bez přihlášení neuloží trvale! <a href="register.html">Založ si účet</a></label>
+                        <label class="scare-label" id="scare-label">Alkohol se bez přihlášení neuloží trvale! <a
+                                href="register.html">Založ si účet</a></label>
 
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger btn-rounded" data-dismiss="modal">Zrušit</button>
-                    <button type="button" class="btn btn-outline-success btn-rounded" id="add-To-List" data-dismiss="modal">Přidat</button>
+                    <button type="button" class="btn btn-outline-danger btn-rounded" data-dismiss="modal">Zrušit
+                    </button>
+                    <button type="button" class="btn btn-outline-success btn-rounded" id="add-To-List"
+                            data-dismiss="modal">Přidat
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <h1>List přidaného alkoholu:</h1>
-    <div id="added-alcohol-container">
-
-    </div>
-    <button type="button" class="btn btn-outline-danger btn-rounded" id="deleteAlcohol">Vymazat vše</button>
-    <button type="button" class="btn btn-outline-primary btn-rounded" id="calculate">Vypočítat</button>
 </form>
 <script src="../js/index_handleSignIn.js" type="module"></script>
 </body>
