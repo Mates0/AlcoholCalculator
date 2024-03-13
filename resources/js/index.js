@@ -210,11 +210,27 @@ window.onload = function () {
 
         addedAlcohol.forEach((alcohol, index) => {
             let listItem = document.createElement('li');
-            listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center', "text-white");
-            listItem.style.borderBottom = "1px solid white"
-            listItem.style.fontSize = "20px"
-            listItem.style.fontFamily = "Verdana"
-            listItem.textContent = alcohol.timeOfConsumption + " " + alcohol.name + " " + alcohol.volume + " l";
+            listItem.classList.add('list-group-item', 'text-white');
+            listItem.style.borderBottom = "1px solid white";
+            listItem.style.fontSize = "20px";
+            listItem.style.fontFamily = "Verdana";
+            listItem.style.display = "flex";
+
+
+            let timeItem = document.createElement('li');
+            timeItem.textContent = alcohol.timeOfConsumption;
+            timeItem.style.display = "block"
+            timeItem.style.borderRight = "1px solid white";
+            listItem.appendChild(timeItem);
+
+            let infoDiv = document.createElement('div');
+            infoDiv.style.display = "flex";
+            infoDiv.style.justifyContent = "space-between";
+            infoDiv.style.width = "100%";
+
+            let infoItem = document.createElement('li');
+            infoItem.textContent = alcohol.name + " " + alcohol.volume + " l";
+            infoItem.style.display = "block"
 
             let deleteButton = document.createElement('button');
             deleteButton.type = 'button';
@@ -224,7 +240,11 @@ window.onload = function () {
                 addedAlcohol.splice(index, 1);
                 renderAddedAlcohol();
             });
-            listItem.appendChild(deleteButton);
+
+            infoDiv.appendChild(infoItem);
+            infoDiv.appendChild(deleteButton);
+
+            listItem.appendChild(infoDiv);
 
             listContainer.appendChild(listItem);
         });
