@@ -150,10 +150,12 @@ window.onload = function () {
             deleteButton.textContent = '-';
             deleteButton.style.marginLeft = "15px"
             deleteButton.addEventListener('click', function () {
+                let index = alcoholType.indexOf(alcohol);
                 alcoholType.splice(alcoholType.indexOf(alcohol), 1);
                 displayAlcohol(alcoholType);
                 if (userCreds) {
-                    removeAlcoholFromDatabase()
+                    let setCreds = JSON.parse(sessionStorage.getItem('user-creds'));
+                    removeAlcoholFromDatabase(setCreds, index, clickedOn)
                 }
             });
             cardBodyDiv.appendChild(deleteButton);

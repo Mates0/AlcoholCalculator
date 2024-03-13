@@ -65,3 +65,4 @@ function saveCustomAlcoholListsToDatabase(beers, wines, liquor, userId) {
             console.error("Error saving custom alcohol lists to database:", error);
         });
 }
+
