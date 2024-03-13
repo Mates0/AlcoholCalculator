@@ -28,6 +28,7 @@ const alcoholData = {
 };
 
 let noAlcoholInDB = false
+let clickedOn
 
 const app = initializeApp(firebaseConfig);
 
@@ -55,12 +56,15 @@ window.onload = function () {
     if (userCreds) {
         document.getElementById("beer").addEventListener('click', function () {
             fetchAlcoholListsFromDatabase(alcoholData.beers);
+            clickedOn = "beers"
         });
         document.getElementById("wines").addEventListener('click', function () {
             fetchAlcoholListsFromDatabase(alcoholData.wines);
+            clickedOn = "wines"
         });
         document.getElementById("liquor").addEventListener('click', function () {
             fetchAlcoholListsFromDatabase(alcoholData.liquor);
+            clickedOn = "liquor"
         });
         scareLabel.classList.add('d-none');
     }
@@ -100,6 +104,17 @@ window.onload = function () {
     }
 
     function displayAlcohol(alcoholType) {
+        if (alcoholType.length === 0) {
+            if (clickedOn === "beers") {
+                fetchAlcoholListsFromDatabase(alcoholData.beers);
+            }
+            if (clickedOn === "wines") {
+                fetchAlcoholListsFromDatabase(alcoholData.wines);
+            }
+            if (clickedOn === "liquor") {
+                fetchAlcoholListsFromDatabase(alcoholData.liquor);
+            }
+        }
         clearContainer();
         let alcoholContainer = document.getElementById('alcohol-container');
 
@@ -254,10 +269,10 @@ window.onload = function () {
             .then((snapshot) => {
                 if (snapshot.exists()) {
                     const data = snapshot.val();
-                    console.log(data)
                     alcoholData.beers = data.beers;
                     alcoholData.wines = data.wines;
                     alcoholData.liquor = data.liquor;
+                    console.log(alcoholType, "ALCHOOL TYPE")
                     displayAlcohol(alcoholType);
                 } else {
                     let alcType
