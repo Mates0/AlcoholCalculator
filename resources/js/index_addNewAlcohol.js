@@ -23,6 +23,9 @@ export function addNewAlcoholToLists(beers, wines, liquor) {
     let name = document.getElementById("alcohol-name").value;
     let alcoholContent = parseFloat(document.getElementById("percentage-of-alcohol").value);
     let type = document.getElementById("inputState").value;
+    let beerSlider = document.getElementById("beer");
+    let wineSlider = document.getElementById("wines");
+    let liquorSlider = document.getElementById("liquor");
 
     if (!validateCustomAlcohol(name, alcoholContent)) {
         return;
@@ -34,10 +37,15 @@ export function addNewAlcoholToLists(beers, wines, liquor) {
 
     if (type === "Piva") {
         beers.push(alcohol);
-    } else if (type === "Vína") {
+        beerSlider.click()
+    }
+    if (type === "Vína") {
         wines.push(alcohol);
-    } else if (type === "Tvrdý alkohol") {
+        wineSlider.click()
+    }
+    if (type === "Tvrdý alkohol") {
         liquor.push(alcohol);
+        liquorSlider.click()
     }
 
     if (userCreds) {

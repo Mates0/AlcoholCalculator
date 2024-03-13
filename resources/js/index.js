@@ -6,7 +6,7 @@ import {calculateAlcohol} from './index_calculateAlcohol.js';
 import {validateAddingAlcoholToList, validateCalculation} from "./validate_index.js";
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import {getDatabase, get, ref, set} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+import {getDatabase, get, ref, set, remove} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -149,6 +149,18 @@ window.onload = function () {
             deleteButton.addEventListener('click', function () {
                 alcoholType.splice(alcoholType.indexOf(alcohol), 1);
                 displayAlcohol(alcoholType);
+                if (userCreds) {
+                    const db = getDatabase();
+                    console.log(alcohol.name)
+                    const alcoholRef = ref(db, `users/${userCreds.uid}/customAlcoholLists/wines/4`);
+                    remove(alcoholRef)
+                        .then(() => {
+                            console.log("Data removed from the database successfully.");
+                        })
+                        .catch((error) => {
+                            console.error("Error removing data from the database:", error);
+                        });
+                }
             });
             cardBodyDiv.appendChild(deleteButton);
         });
