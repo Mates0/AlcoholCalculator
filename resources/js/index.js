@@ -1,25 +1,13 @@
 import {beers} from './alcoholLists/beers.js';
 import {wines} from './alcoholLists/wines.js';
 import {liquor} from './alcoholLists/liquor.js';
+import firebaseConfig from "./firebaseConfig/firebaseConfig.js";
 import {addNewAlcoholToLists} from './index_addNewAlcohol.js';
 import {calculateAlcohol} from './index_calculateAlcohol.js';
 import {validateAddingAlcoholToList, validateCalculation} from "./validate_index.js";
-// Import the functions you need from the SDKs you need
+import {removeAlcoholFromDatabase} from "./index_removeFromDatabase.js";
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import {getDatabase, get, ref, set, remove} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyA6angt8_xASccfe0jBmuPjm0LM71jgoG4",
-    authDomain: "alcoholcalculatorxd.firebaseapp.com",
-    databaseURL: "https://alcoholcalculatorxd-default-rtdb.europe-west1.firebasedatabase.app",
-    projectId: "alcoholcalculatorxd",
-    storageBucket: "alcoholcalculatorxd.appspot.com",
-    messagingSenderId: "701660401382",
-    appId: "1:701660401382:web:736fd4dfdd08a17aecf527"
-};
 
 const alcoholData = {
     beers: [],
@@ -165,16 +153,7 @@ window.onload = function () {
                 alcoholType.splice(alcoholType.indexOf(alcohol), 1);
                 displayAlcohol(alcoholType);
                 if (userCreds) {
-                    const db = getDatabase();
-                    console.log(alcohol.name)
-                    const alcoholRef = ref(db, `users/${userCreds.uid}/customAlcoholLists/wines/4`);
-                    remove(alcoholRef)
-                        .then(() => {
-                            console.log("Data removed from the database successfully.");
-                        })
-                        .catch((error) => {
-                            console.error("Error removing data from the database:", error);
-                        });
+                    removeAlcoholFromDatabase()
                 }
             });
             cardBodyDiv.appendChild(deleteButton);
@@ -272,7 +251,6 @@ window.onload = function () {
                     alcoholData.beers = data.beers;
                     alcoholData.wines = data.wines;
                     alcoholData.liquor = data.liquor;
-                    console.log(alcoholType, "ALCHOOL TYPE")
                     displayAlcohol(alcoholType);
                 } else {
                     let alcType
