@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import {getDatabase, get, ref, set} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-import {validateIndex} from "./validate_index.js";
+import {validateCalculation} from "./validate_index.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,8 +21,9 @@ export function calculateAlcohol(addedAlcohol) {
     let weight = document.getElementById("weightForm").value
     let gender = document.getElementById("genderForm").value
     let timeInput = document.getElementById("timeForm").value;
+    let addButton = document.getElementById("add-To-List");
 
-    if (!validateIndex(weight,timeInput,addedAlcohol)) {
+    if (!validateCalculation(weight,timeInput,addedAlcohol)) {
         return;
     }
 

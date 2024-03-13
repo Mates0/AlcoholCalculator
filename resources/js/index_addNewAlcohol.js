@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import {getDatabase, get, ref, set} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+import {validateCustomAlcohol} from "./validate_index.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,6 +24,9 @@ export function addNewAlcoholToLists(beers, wines, liquor) {
     let alcoholContent = parseFloat(document.getElementById("percentage-of-alcohol").value);
     let type = document.getElementById("inputState").value;
 
+    if (!validateCustomAlcohol(name, alcoholContent)) {
+        return;
+    }
     let alcohol = {
         name: name,
         alcoholcontent: alcoholContent

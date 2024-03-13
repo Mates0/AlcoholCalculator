@@ -3,6 +3,7 @@ import {wines} from './alcoholLists/wines.js';
 import {liquor} from './alcoholLists/liquor.js';
 import {addNewAlcoholToLists} from './index_addNewAlcohol.js';
 import {calculateAlcohol} from './index_calculateAlcohol.js';
+import {validateAddingAlcoholToList, validateCalculation} from "./validate_index.js";
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import {getDatabase, get, ref, set} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
@@ -156,21 +157,26 @@ window.onload = function () {
     function addToAlcoholList() {
         let timeOfConsumption = document.getElementById("time-form").value;
         let volume = document.getElementById("volume-form").value;
+        let addButton = document.getElementById("add-To-List")
 
-        if (timeOfConsumption && volume) {
-            let selectedAlcoholName = document.getElementById('exampleModalLabel').textContent;
-            let selectedAlcohol = findAlcoholByName(selectedAlcoholName);
-
-            let alcohol = {
-                name: selectedAlcoholName,
-                alcoholContent: selectedAlcohol.alcoholcontent,
-                timeOfConsumption: timeOfConsumption,
-                volume: volume
-            };
-            addedAlcohol.push(alcohol);
-            renderAddedAlcohol();
-            console.log(addedAlcohol)
+        if (!validateAddingAlcoholToList(timeOfConsumption, volume)) {
+            return;
         }
+
+        $('#exampleModal').modal('hide')
+
+        let selectedAlcoholName = document.getElementById('exampleModalLabel').textContent;
+        let selectedAlcohol = findAlcoholByName(selectedAlcoholName);
+
+        let alcohol = {
+            name: selectedAlcoholName,
+            alcoholContent: selectedAlcohol.alcoholcontent,
+            timeOfConsumption: timeOfConsumption,
+            volume: volume
+        };
+        addedAlcohol.push(alcohol);
+        renderAddedAlcohol();
+        console.log(addedAlcohol)
     }
 
     function findAlcoholByName(name) {

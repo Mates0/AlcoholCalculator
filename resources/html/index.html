@@ -134,8 +134,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-danger btn-rounded" data-dismiss="modal">Zrušit
                     </button>
-                    <button type="button" class="btn btn-outline-success btn-rounded" id="addAlcoholToList"
-                            data-dismiss="modal">Přidat
+                    <button type="button" class="btn btn-outline-success btn-rounded" id="addAlcoholToList">Přidat
                     </button>
                 </div>
             </div>
@@ -144,7 +143,7 @@
 
     <!-- Add Alcohol Modal -->
     <div class="modal fade" id="add-more-alcohol-modal" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalLabel"
+         aria-labelledby="add-more-alcohol-modal"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -160,14 +159,17 @@
                             <label for="alcohol-name" class="alcohol-name">Název Alkoholu</label>
                             <input type="text" class="form-control" id="alcohol-name" aria-describedby="emailHelp"
                                    placeholder="Finlandia">
+                            <small id="addCustomAlc-name"></small>
                         </div>
                         <div class="form-group">
                             <label for="volume-form">% Alkoholu</label>
                             <input type="number" class="form-control" placeholder="0,2" id="percentage-of-alcohol">
+                            <small id="addCustomAlc-percentage"></small>
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputState">Typ Alkoholu</label>
-                            <select id="inputState" class="form-control">
+                        <div class="col-md-12">
+                            <label>Pohlaví</label>
+                            <select class="form-select" id="inputState">
+                                <option selected disabled value="">Zvol typ alkoholu</option>
                                 <option>Piva</option>
                                 <option>Vína</option>
                                 <option>Tvrdý alkohol</option>
@@ -182,8 +184,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-danger btn-rounded" data-dismiss="modal">Zrušit
                     </button>
-                    <button type="button" class="btn btn-outline-success btn-rounded" id="add-To-List"
-                            data-dismiss="modal">Přidat
+                    <button type="button" class="btn btn-outline-success btn-rounded" id="add-To-List">Přidat
                     </button>
                 </div>
             </div>
