@@ -2,8 +2,34 @@ $website-font: "Verdana";
 
 body {
   font-family: $website-font;
-    background-color: #1F1F1F;
+  background-color: #1F1F1F;
 }
-h1 {
+h3 {
   color: white;
+}
+
+nav {
+  background-color: #1c2330;
+}
+
+#logout-btn{
+  margin-left: auto;
+}
+
+#history-container {
+  border: 3px solid #fff;
+  border-radius: 6px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.history-div {
+  display: flex;
+  justify-content: center;
+}
+
+.history-header{
+  text-align: center;
 }

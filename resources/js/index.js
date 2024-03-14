@@ -211,7 +211,7 @@ window.onload = function () {
         addedAlcohol.forEach((alcohol, index) => {
             let listItem = document.createElement('li');
             listItem.classList.add('list-group-item', 'text-white');
-            listItem.style.borderBottom = "1px solid white";
+            listItem.style.borderBottom = "2px solid white";
             listItem.style.fontSize = "20px";
             listItem.style.fontFamily = "Verdana";
             listItem.style.display = "flex";
@@ -220,7 +220,7 @@ window.onload = function () {
             let timeItem = document.createElement('li');
             timeItem.textContent = alcohol.timeOfConsumption;
             timeItem.style.display = "block"
-            timeItem.style.borderRight = "1px solid white";
+            timeItem.style.borderRight = "3px solid white";
             listItem.appendChild(timeItem);
 
             let infoDiv = document.createElement('div');

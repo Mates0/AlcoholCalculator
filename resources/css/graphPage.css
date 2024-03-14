@@ -1,6 +1,5 @@
 body {
   font-family: "Verdana";
-  font-size: 1rem;
   background-color: #1F1F1F;
 }
 
@@ -28,6 +27,10 @@ nav {
 
 h1 {
   color: white;
+}
+
+.div-buttons {
+  margin-left: auto;
 }
 
 /*# sourceMappingURL=graphPage.css.map */

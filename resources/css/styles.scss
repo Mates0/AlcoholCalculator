@@ -71,6 +71,7 @@ nav {
   display: flex;
   max-width: 100%;
   min-height: 30rem;
+  width: 100%;
 }
 
 .list-group {
@@ -84,10 +85,7 @@ nav {
 .added-alcohol-div {
   margin-top: 50px;
   border: 3px solid #fff;
-}
-
-.center-two-elements {
-  width: 100%;
+  border-radius: 6px;
 }
 
 .calculate-btns-div {
@@ -111,8 +109,9 @@ small {
   color: red;
 }
 
-.test {
+.add-alcohol-div {
   border: 2px solid white;
   min-height: 30rem;
-
+  border-radius: 6px;
+  margin-right: 10px;
 }
