@@ -37,6 +37,7 @@ let registerAndSignInUser = evt => {
                     set(ref(db, 'users/' + userCredentials.user.uid), {
                         email: email
                     }).then(() => {
+                        sessionStorage.setItem("user-info", JSON.stringify({email: email, uid: userCredentials.user.uid}));
                         sessionStorage.setItem("user-creds", JSON.stringify(userCredentials.user));
                         window.location.href = 'index.html';
                     });

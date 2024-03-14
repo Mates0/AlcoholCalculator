@@ -1,29 +1,32 @@
-let userCreds = JSON.parse(sessionStorage.getItem('user-creds'));
+let loginBtn = document.getElementById('login-btn');
+let registerBtn = document.getElementById('register-btn');
+let profileBtn = document.getElementById('profile-btn');
+let logoutBtn = document.getElementById('logout-btn');
 
-let accountDetails = document.getElementById("profile-btn");
-let logOutBtn = document.getElementById('logout-btn');
-
-let checkIfSigned = () => {
+function checkIfSigned() {
+    let userCreds = JSON.parse(sessionStorage.getItem('user-creds'));
     if (userCreds) {
-        document.getElementById('login-btn').classList.add('d-none');
-        document.getElementById('register-btn').classList.add('d-none');
-        document.getElementById('profile-btn').classList.remove('d-none');
-        document.getElementById('logout-btn').classList.remove('d-none');
+        loginBtn.classList.add('d-none');
+        registerBtn.classList.add('d-none');
+        profileBtn.classList.remove('d-none');
+        logoutBtn.classList.remove('d-none');
     }
 }
 
-let signOut = () => {
+function signOut() {
     sessionStorage.removeItem('user-creds');
     sessionStorage.removeItem('user-info');
-    document.getElementById('login-btn').classList.remove('d-none');
-    document.getElementById('register-btn').classList.remove('d-none');
-    document.getElementById('profile-btn').classList.add('d-none');
-    document.getElementById('logout-btn').classList.add('d-none');
+    loginBtn.classList.remove('d-none');
+    registerBtn.classList.remove('d-none');
+    profileBtn.classList.add('d-none');
+    logoutBtn.classList.add('d-none');
     window.location.href = 'index.html';
 }
 
-window.addEventListener('load', checkIfSigned)
-logOutBtn.addEventListener('click', signOut);
-accountDetails.addEventListener('click', () => {
+function redirectToProfile() {
     window.location.href = 'profileDetail.html';
-})
+}
+
+window.addEventListener('load', checkIfSigned);
+logoutBtn.addEventListener('click', signOut);
+profileBtn.addEventListener('click', redirectToProfile);

@@ -6,6 +6,8 @@ const app = initializeApp(firebaseConfig);
 window.addEventListener('DOMContentLoaded', (event) => {
     let userCreds = JSON.parse(sessionStorage.getItem('user-creds'));
     let userInfo = JSON.parse(sessionStorage.getItem('user-info'));
+    console.log(userInfo)
+    console.log(userCreds)
     let logoutBtn = document.getElementById('logout-btn');
     logoutBtn.addEventListener('click', function () {
         signOut();
@@ -19,10 +21,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const db = getDatabase();
     const userProfileRef = ref(db, 'users/' + userCreds.uid + '/historyOfCalculatedAlcohol');
 
-    let historyContainer = document.getElementById("history-container");
     let email = document.getElementById("email");
+    let userId = document.getElementById("userId");
 
     email.innerHTML = "Email: " + userCreds.email;
+    userId.innerHTML = "Uživatelské ID: " + userInfo.uid;
 
     get(userProfileRef)
         .then((snapshot) => {
@@ -93,12 +96,10 @@ function displayHistory(historyData) {
         historyContainer.appendChild(card);
     });
 }
-
-
-
 function displayMessage(message) {
-    const historyContainer = document.getElementById("history-container");
-    historyContainer.textContent = message;
+    const historyContainer = document.getElementById("no-history");
+    historyContainer.innerHTML = message;
+    historyContainer.classList.remove("d-none");
 }
 
 

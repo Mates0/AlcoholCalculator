@@ -25,12 +25,39 @@ nav {
   padding: 15px 0;
 }
 
-h1 {
+h2 {
   color: white;
+  font-size: 25px;
 }
 
 .div-buttons {
   margin-left: auto;
+}
+
+.info-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: black; /* Box background color */
+  padding: 20px; /* Padding around content */
+  width: 500px; /* Width of the box */
+  border: 3px solid #fff;
+  border-radius: 6px;
+}
+
+.info-box-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.line-chart {
+  margin-top: 10px;
+  border: 3px solid #fff;
+  border-radius: 6px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 /*# sourceMappingURL=graphPage.css.map */

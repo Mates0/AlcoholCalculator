@@ -80,7 +80,7 @@ logoutBtn.addEventListener('click', function () {
 
     //document.getElementById("weightOfBurnedAlcohol").innerHTML = `Hmotnost (odbouraného alkoholu): ${weightOfBurnedAlcohol} [g/h]`
 
-    document.getElementById("promile").innerHTML = `Promile: ${maxPromile} [%.]`;
+    document.getElementById("promile").innerHTML = `Max Promile: ${maxPromile.toFixed(3)} [%.]`;
 
     //Časová array
     let timeNeeded = Math.ceil(weightOfAlcohol / weightOfBurnedAlcohol) + 2;
