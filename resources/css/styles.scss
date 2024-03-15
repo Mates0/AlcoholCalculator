@@ -2,6 +2,7 @@ $website-font: "Verdana";
 
 body {
   background-color: #1F1F1F;
+  min-height: 1150px;
 }
 
 h1,h2,h3,h4,h5 {
@@ -91,6 +92,11 @@ nav {
 .calculate-btns-div {
   display: flex;
   justify-content: center;
+  margin-top: 15px;
+}
+#calculate{
+  margin-right: 10px;
+  min-width: 150px;
 }
 
 .modal-content {
@@ -114,4 +120,9 @@ small {
   min-height: 30rem;
   border-radius: 6px;
   margin-right: 10px;
+}
+
+#added-alcohol-div-wrapper{
+  display: flex;
+  flex-direction: column;
 }

@@ -221,6 +221,8 @@ window.onload = function () {
             timeItem.textContent = alcohol.timeOfConsumption;
             timeItem.style.display = "block"
             timeItem.style.borderRight = "3px solid white";
+            timeItem.style.paddingRight = "10px";
+            timeItem.style.paddingLeft = "10px";
             listItem.appendChild(timeItem);
 
             let infoDiv = document.createElement('div');
@@ -231,6 +233,7 @@ window.onload = function () {
             let infoItem = document.createElement('li');
             infoItem.textContent = alcohol.name + " " + alcohol.volume + " l";
             infoItem.style.display = "block"
+            infoItem.style.marginLeft = "10px";
 
             let deleteButton = document.createElement('button');
             deleteButton.type = 'button';
