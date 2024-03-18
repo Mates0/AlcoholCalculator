@@ -9,7 +9,6 @@ export function calculateAlcohol(addedAlcohol) {
     let weight = document.getElementById("weightForm").value
     let gender = document.getElementById("genderForm").value
     let timeInput = document.getElementById("timeForm").value;
-    let addButton = document.getElementById("add-To-List");
 
     if (!validateCalculation(weight,timeInput,addedAlcohol)) {
         return;
