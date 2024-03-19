@@ -7,6 +7,6 @@
     { "source": "/profileDetail.html", "destination": "/html/profileDetail.html"}
   ],
   "redirects": [
-    { "source": "/", "destination": "/index.html", "statusCode": 301 }
+    { "source": "/", "destination": "html/index.html", "statusCode": 301 }
   ]
 }
