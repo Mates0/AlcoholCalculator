@@ -4,10 +4,10 @@
     { "source": "/graphPage.html", "destination": "/html/graphPage.html"},
     { "source": "/login.html", "destination": "/html/login.html"},
     { "source": "/register.html", "destination": "/html/register.html"},
-    { "source": "/profileDetail.html", "destination": "/html/profileDetail.html"},
-    { "source": "/login.html", "destination": "/"},
-    { "source": "/register.html", "destination": "/"},
-    { "source": "/profileDetail.html", "destination": "/"},
-    { "source": "/graphPage.html", "destination": "/"}
+    { "source": "/profileDetail.html", "destination": "/html/profileDetail.html"}
+  ],
+  "redirects": [
+    { "source": "/login.html", "destination": "/", "statusCode": 301 },
+    { "source": "/register.html", "destination": "/", "statusCode": 301 }
   ]
 }
