@@ -122,7 +122,7 @@ logoutBtn.addEventListener('click', function () {
 
     let ctx = document.getElementById('canvas').getContext('2d');
 
-    const options = {
+    const chart = {
         type: "line",
         data: {
             labels: timeArray,
@@ -147,5 +147,5 @@ logoutBtn.addEventListener('click', function () {
             },
         }
     };
-    window.myLine = new Chart(ctx, options);
+    window.myLine = new Chart(ctx, chart);
 });
