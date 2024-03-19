@@ -5,9 +5,9 @@
     { "source": "/login.html", "destination": "/html/login.html"},
     { "source": "/register.html", "destination": "/html/register.html"},
     { "source": "/profileDetail.html", "destination": "/html/profileDetail.html"},
-    { "source": "/login.html", "destination": "/html/index.html"},
-    { "source": "/register.html", "destination": "/html/index.html"},
-    { "source": "/profileDetail.html", "destination": "/html/index.html"},
-    { "source": "/graphPage.html", "destination": "/html/index.html"}
+    { "source": "/login.html", "destination": "/"},
+    { "source": "/register.html", "destination": "/"},
+    { "source": "/profileDetail.html", "destination": "/"},
+    { "source": "/graphPage.html", "destination": "/"}
   ]
 }
