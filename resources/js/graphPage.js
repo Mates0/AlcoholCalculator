@@ -23,18 +23,19 @@ document.addEventListener('DOMContentLoaded', function () {
     profileBtn.addEventListener('click', function () {
         window.location.href = 'profileDetail.html';
     })
-logoutBtn.addEventListener('click', function () {
+    logoutBtn.addEventListener('click', function () {
         signOut();
     })
-    let signOut = () => {
+    function signOut() {
         sessionStorage.removeItem('user-creds');
         sessionStorage.removeItem('user-info');
-        document.getElementById('login-btn').classList.remove('d-none');
-        document.getElementById('register-btn').classList.remove('d-none');
-        document.getElementById('profile-btn').classList.add('d-none');
-        document.getElementById('logout-btn').classList.add('d-none');
+        loginBtn.classList.remove('d-none');
+        registerBtn.classList.remove('d-none');
+        profileBtn.classList.add('d-none');
+        logoutBtn.classList.add('d-none');
         window.location.href = 'index.html';
     }
+
     if (userCreds) {
         loginBtn.classList.add("d-none");
         registerBtn.classList.add("d-none");

@@ -4,10 +4,10 @@ import {liquor} from './alcoholLists/liquor.js';
 import firebaseConfig from "./firebaseConfig/firebaseConfig.js";
 import {addNewAlcoholToLists} from './index_addNewAlcohol.js';
 import {calculateAlcohol} from './index_calculateAlcohol.js';
-import {validateAddingAlcoholToList, validateCalculation} from "./validate_index.js";
+import {validateAddingAlcoholToList} from "./validate_index.js";
 import {removeAlcoholFromDatabase} from "./index_removeFromDatabase.js";
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import {getDatabase, get, ref, set, remove} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+import {getDatabase, get, ref} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
 const alcoholData = {
     beers: [],
@@ -28,29 +28,52 @@ window.onload = function () {
 
     let addedAlcohol = [];
 
+    let beerSlider = document.getElementById("beer");
+    let wineSlider = document.getElementById("wines");
+    let liquorSlider = document.getElementById("liquor");
+
+
     if (!userCreds) {
-        document.getElementById("beer").addEventListener('click', function () {
+        beerSlider.addEventListener('click', function () {
+            wineSlider.style.backgroundColor = "#1c2330";
+            liquorSlider.style.backgroundColor = "#1c2330";
+            beerSlider.style.backgroundColor = "#323B4A";
             displayAlcohol(beers);
         });
-        document.getElementById("wines").addEventListener('click', function () {
+        wineSlider.addEventListener('click', function () {
+            beerSlider.style.backgroundColor = "#1c2330";
+            liquorSlider.style.backgroundColor = "#1c2330";
+            wineSlider.style.backgroundColor = "#323B4A";
             displayAlcohol(wines);
         });
-        document.getElementById("liquor").addEventListener('click', function () {
+        liquorSlider.addEventListener('click', function () {
+            wineSlider.style.backgroundColor = "#1c2330";
+            beerSlider.style.backgroundColor = "#1c2330";
+            liquorSlider.style.backgroundColor = "#323B4A";
             displayAlcohol(liquor);
         });
         scareLabel.classList.add('d-block');
     }
 
     if (userCreds) {
-        document.getElementById("beer").addEventListener('click', function () {
+        beerSlider.addEventListener('click', function () {
+            wineSlider.style.backgroundColor = "#1c2330";
+            liquorSlider.style.backgroundColor = "#1c2330";
+            beerSlider.style.backgroundColor = "#323B4A";
             fetchAlcoholListsFromDatabase(alcoholData.beers);
             clickedOn = "beers"
         });
-        document.getElementById("wines").addEventListener('click', function () {
+        wineSlider.addEventListener('click', function () {
+            beerSlider.style.backgroundColor = "#1c2330";
+            liquorSlider.style.backgroundColor = "#1c2330";
+            wineSlider.style.backgroundColor = "#323B4A";
             fetchAlcoholListsFromDatabase(alcoholData.wines);
             clickedOn = "wines"
         });
-        document.getElementById("liquor").addEventListener('click', function () {
+        liquorSlider.addEventListener('click', function () {
+            wineSlider.style.backgroundColor = "#1c2330";
+            beerSlider.style.backgroundColor = "#1c2330";
+            liquorSlider.style.backgroundColor = "#323B4A";
             fetchAlcoholListsFromDatabase(alcoholData.liquor);
             clickedOn = "liquor"
         });
@@ -64,7 +87,7 @@ window.onload = function () {
         addToAlcoholList();
     });
     document.getElementById("add-more-alcohol").addEventListener("click", function () {
-        var modal = new bootstrap.Modal(document.getElementById('add-more-alcohol-modal'));
+        let modal = new bootstrap.Modal(document.getElementById('add-more-alcohol-modal'));
 
         modal.show();
     });

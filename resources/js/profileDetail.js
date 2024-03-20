@@ -1,9 +1,9 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import {getDatabase, get, ref, set} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+import {getDatabase, get, ref} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 import firebaseConfig from "./firebaseConfig/firebaseConfig.js";
 const app = initializeApp(firebaseConfig);
 
-window.addEventListener('DOMContentLoaded', (event) => {
+window.addEventListener('DOMContentLoaded', () => {
     let userCreds = JSON.parse(sessionStorage.getItem('user-creds'));
     let userInfo = JSON.parse(sessionStorage.getItem('user-info'));
     console.log(userInfo)
@@ -22,10 +22,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     const userProfileRef = ref(db, 'users/' + userCreds.uid + '/historyOfCalculatedAlcohol');
 
     let email = document.getElementById("email");
-    let userId = document.getElementById("userId");
 
-    email.innerHTML = "Email: " + userCreds.email;
-    userId.innerHTML = "Uživatelské ID: " + userInfo.uid;
+    email.innerHTML = "E-mail: " + userCreds.email;
 
     get(userProfileRef)
         .then((snapshot) => {
@@ -46,7 +44,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 function displayHistory(historyData) {
     const historyContainer = document.getElementById("history-container");
 
-    historyData.forEach((entry, index) => {
+    historyData.forEach((entry) => {
         const card = document.createElement("div");
         card.classList.add("card", "bg-dark", "d-flex", "justify-content-center");
 

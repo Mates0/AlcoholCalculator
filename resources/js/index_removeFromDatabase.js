@@ -1,6 +1,4 @@
-import {initializeApp} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import {getDatabase, get, ref, set, remove} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-import firebaseConfig from "./firebaseConfig/firebaseConfig.js";
+import {getDatabase, ref, remove} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
 export function removeAlcoholFromDatabase(userCreds, alcoholId, clickedOn) {
     const db = getDatabase();

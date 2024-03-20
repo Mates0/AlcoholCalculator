@@ -109,6 +109,14 @@ nav {
   border-radius: 0;
 }
 
+#beer {
+  border-left: 0;
+}
+
+#liquor {
+  border-right: 0;
+}
+
 small {
   color: red;
 }

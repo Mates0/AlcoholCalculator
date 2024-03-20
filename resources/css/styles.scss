@@ -5,7 +5,7 @@ body {
   min-height: 1150px;
 }
 
-h1,h2,h3,h4,h5 {
+h1, h2, h3, h4, h5 {
   font-family: $website-font;
   color: white;
 }
@@ -44,7 +44,7 @@ nav {
 }
 
 
-.form-content .form-items{
+.form-content .form-items {
   border: 3px solid #fff;
   padding: 40px;
   display: inline-block;
@@ -94,7 +94,8 @@ nav {
   justify-content: center;
   margin-top: 15px;
 }
-#calculate{
+
+#calculate {
   margin-right: 10px;
   min-width: 150px;
 }
@@ -111,6 +112,14 @@ nav {
   border-radius: 0;
 }
 
+#beer {
+  border-left: 0;
+}
+
+#liquor {
+  border-right: 0;
+}
+
 small {
   color: red;
 }
@@ -122,7 +131,7 @@ small {
   margin-right: 10px;
 }
 
-#added-alcohol-div-wrapper{
+#added-alcohol-div-wrapper {
   display: flex;
   flex-direction: column;
 }
