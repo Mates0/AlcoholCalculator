@@ -6,8 +6,6 @@ const app = initializeApp(firebaseConfig);
 window.addEventListener('DOMContentLoaded', () => {
     let userCreds = JSON.parse(sessionStorage.getItem('user-creds'));
     let userInfo = JSON.parse(sessionStorage.getItem('user-info'));
-    console.log(userInfo)
-    console.log(userCreds)
     let logoutBtn = document.getElementById('logout-btn');
     logoutBtn.addEventListener('click', function () {
         signOut();
@@ -28,7 +26,6 @@ window.addEventListener('DOMContentLoaded', () => {
     get(userProfileRef)
         .then((snapshot) => {
             const userData = snapshot.val();
-            console.log(userData)
             if (userData) {
                 displayHistory(userData);
             } else {

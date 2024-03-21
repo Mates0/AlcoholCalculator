@@ -14,7 +14,6 @@ let passwordInput = document.getElementById("password-input")
 let repeatEmailInput = document.getElementById("wrong-email-placeholder")
 let repeatPasswordInput = document.getElementById("repeat-password-input")
 let registerBtn = document.getElementById("register-btn")
-let wrongPassword = document.getElementById("wrong-password-placeholder");
 
 
 let registerAndSignInUser = evt => {

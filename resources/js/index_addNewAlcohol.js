@@ -49,14 +49,12 @@ function saveCustomAlcoholListsToDatabase(beers, wines, liquor, userId) {
     const db = getDatabase();
     const userAlcoholListsRef = ref(db, `users/${userId}/customAlcoholLists`);
 
-    // Construct the data object containing all three lists
     const customAlcoholLists = {
         beers: beers,
         wines: wines,
         liquor: liquor
     };
 
-    // Set the entire object to the database
     set(userAlcoholListsRef, customAlcoholLists)
         .then(() => {
             console.log("Custom alcohol lists saved to database");

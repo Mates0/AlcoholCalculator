@@ -207,7 +207,6 @@ window.onload = function () {
         };
         addedAlcohol.push(alcohol);
         renderAddedAlcohol();
-        console.log(addedAlcohol)
     }
 
     function findAlcoholByName(name) {
