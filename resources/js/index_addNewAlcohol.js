@@ -45,7 +45,7 @@ export function addNewAlcoholToLists(beers, wines, liquor) {
     document.getElementById("inputState").selectedIndex = 0;
 }
 
-function saveCustomAlcoholListsToDatabase(beers, wines, liquor, userId) {
+export function saveCustomAlcoholListsToDatabase(beers, wines, liquor, userId) {
     const db = getDatabase();
     const userAlcoholListsRef = ref(db, `users/${userId}/customAlcoholLists`);
 

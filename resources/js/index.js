@@ -2,7 +2,7 @@ import {beers} from './alcoholLists/beers.js';
 import {wines} from './alcoholLists/wines.js';
 import {liquor} from './alcoholLists/liquor.js';
 import firebaseConfig from "./firebaseConfig/firebaseConfig.js";
-import {addNewAlcoholToLists} from './index_addNewAlcohol.js';
+import {addNewAlcoholToLists, saveCustomAlcoholListsToDatabase} from './index_addNewAlcohol.js';
 import {calculateAlcohol} from './index_calculateAlcohol.js';
 import {validateAddingAlcoholToList} from "./validate_index.js";
 import {removeAlcoholFromDatabase} from "./index_removeFromDatabase.js";
@@ -15,7 +15,6 @@ const alcoholData = {
     liquor: []
 };
 
-let noAlcoholInDB = false
 let clickedOn
 
 const app = initializeApp(firebaseConfig);
@@ -210,8 +209,7 @@ window.onload = function () {
     }
 
     function findAlcoholByName(name) {
-        if (noAlcoholInDB && userCreds) {
-            noAlcoholInDB = false
+        if (userCreds) {
             let allAlcohols = [...beers, ...wines, ...liquor];
             return allAlcohols.find(alcohol => alcohol.name === name);
         }
@@ -310,7 +308,7 @@ window.onload = function () {
                     if (alcoholType === alcoholData.liquor) {
                         alcType = liquor
                     }
-                    noAlcoholInDB = true
+                    saveCustomAlcoholListsToDatabase(beers, wines, liquor, userCreds.uid);
                     displayAlcohol(alcType);
                     console.log("No alcohol lists found in the database.");
                 }
@@ -319,5 +317,4 @@ window.onload = function () {
                 console.error("Error fetching alcohol lists:", error);
             });
     }
-
 };
