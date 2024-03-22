@@ -8,11 +8,6 @@ import {validateAddingAlcoholToList} from "./validate_index.js";
 import {removeAlcoholFromDatabase} from "./index_removeFromDatabase.js";
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import {getDatabase, get, ref} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-import { inject } from "@vercel/analytics";
-import { injectSpeedInsights } from '@vercel/speed-insights';
-inject()
-injectSpeedInsights();
-
 
 const alcoholData = {
     beers: [],
