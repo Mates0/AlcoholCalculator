@@ -13,7 +13,7 @@ function checkIfSigned() {
     }
 }
 
-function signOut() {
+export function signOut() {
     sessionStorage.removeItem('user-creds');
     sessionStorage.removeItem('user-info');
     loginBtn.classList.remove('d-none');

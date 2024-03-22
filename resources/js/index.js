@@ -158,9 +158,9 @@ window.onload = function () {
             addButton.classList.add('btn', 'btn-success', "btn-rounded");
             addButton.textContent = '+';
             addButton.setAttribute('data-toggle', 'modal');
-            addButton.setAttribute('data-target', '#exampleModal');
+            addButton.setAttribute('data-target', '#add-to-list-modal');
             addButton.addEventListener('click', function () {
-                let modalTitle = document.getElementById('exampleModalLabel');
+                let modalTitle = document.getElementById('add-to-list-modal-header');
                 modalTitle.textContent = alcohol.name;
                 document.getElementById('time-form').value = '';
                 document.getElementById('volume-form').value = '';
@@ -194,9 +194,9 @@ window.onload = function () {
             return;
         }
 
-        $('#exampleModal').modal('hide')
+        $('#add-to-list-modal').modal('hide')
 
-        let selectedAlcoholName = document.getElementById('exampleModalLabel').textContent;
+        let selectedAlcoholName = document.getElementById('add-to-list-modal-header').textContent;
         let selectedAlcohol = findAlcoholByName(selectedAlcoholName);
 
         let alcohol = {

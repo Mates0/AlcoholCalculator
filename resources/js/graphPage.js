@@ -1,3 +1,5 @@
+import {signOut} from './index_handleSignIn.js';
+
 document.addEventListener('DOMContentLoaded', function () {
     let genderValue;
     let genderValue2;
@@ -24,17 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
         window.location.href = 'profileDetail.html';
     })
     logoutBtn.addEventListener('click', function () {
-        signOut();
+        signOut()
     })
-    function signOut() {
-        sessionStorage.removeItem('user-creds');
-        sessionStorage.removeItem('user-info');
-        loginBtn.classList.remove('d-none');
-        registerBtn.classList.remove('d-none');
-        profileBtn.classList.add('d-none');
-        logoutBtn.classList.add('d-none');
-        window.location.href = 'index.html';
-    }
 
     if (userCreds) {
         loginBtn.classList.add("d-none");
@@ -137,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     lineTension: 0.1,
                     borderWidth: 2,
                     pointRadius: 5,
-                    label: "Hladina alkoholu v krvi"
+                    label: "Hladina alkoholu v krvi",
                 }
             ]
         },
@@ -145,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
             responsive: true,
             legend: {
                 display: false,
-            },
+            }
         }
     };
     window.myLine = new Chart(ctx, chart);
